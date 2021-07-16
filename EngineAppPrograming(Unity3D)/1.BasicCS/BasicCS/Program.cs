@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace BasicCS
 {
@@ -12,8 +13,11 @@ namespace BasicCS
             //ValMain();//함수의 호출
             //BasicTestMain();
             //PlayerAttackMonsterMain();
-            CriticalAttackMain();
-            Console.ReadLine();//종료방지
+            //CriticalAttackMain();
+            //StageMain();
+            //CriticalAttackWhileMain();
+            BattleMain();
+            //Console.ReadLine();//종료방지
         }//구문끝
         //매개변수: 함수안에 값을 전달하는 변수
         static int Add(int a, int b)
@@ -83,7 +87,143 @@ namespace BasicCS
         //알고리즘: 마을이면 마을입니다. 상점이면 상점입니다. 필드이면 필드입니다.
         static void StageMain()
         {
+            string strInput;
+            Console.WriteLine("가고싶은곳을 선택하세요!(마을,상점,필드)");
+            strInput = Console.ReadLine();
+            //Console.WriteLine(strInput + " 입니다."); //잘못입력한경우 정상적인 출력이 아님.
+            //if (strInput == "마을")
+            //    Console.WriteLine("마을 입니다.");
+            //else if (strInput == "상점")
+            //    Console.WriteLine("상점 입니다.");
+            //else if (strInput == "필드")
+            //    Console.WriteLine("필드 입니다.");
+            //else
+            //    Console.WriteLine("!?!?!?!?!?");
+            switch(strInput)
+            {
+                case "마을":
+                    Console.WriteLine(strInput + " 입니다.");
+                    break;
+                case "상점":
+                    Console.WriteLine(strInput + " 입니다.");
+                    break;
+                case "필드":
+                    Console.WriteLine(strInput + " 입니다.");
+                    break;
+                default:
+                    Console.WriteLine("!?!?!?!?!?");
+                    break;
+            }
+        }
 
+        //플레이어가 몬스터를 공격하면 몬스터의 체력이 감소하는데, 이때 (일정확률)로 (크리니컬데미지가 발생하면 데미지의 1.5배만큼 감소)하고, 아니라면 데미지만큼 감소한다.
+        //몬스터가 죽을때까지 -> 체력이 0이 된다. -> 몬스터가 살아있을때 공격한다. 죽으면 공격을 안함.
+        //1.반복문의 조건을 적을때, 우선 무한 루프 돌리고 브레이크로 종료한다.
+        //2.브레이크의 반대조건을 반복문의 조건으로 설정한다.
+        static void CriticalAttackWhileMain()
+        {
+            int nPlayerDemage = 10;
+            int nMonsterHp = 100;
+            Random cRadom = new Random();
+            //while (true)
+            while (nMonsterHp > 0)
+            {
+                //if (nMonsterHp <= 0) break;
+                int nRandom = cRadom.Next(0, 3);//프로그래밍에서는 항상0부터 시작한다.
+                Console.WriteLine("1.MonsterHP:" + nMonsterHp);
+                if (nRandom == 1)
+                {
+                    nMonsterHp = nMonsterHp - (int)((float)nPlayerDemage * 1.5f);
+                    Console.WriteLine("Critical!!!:" + nPlayerDemage * 1.5f);
+                }
+                else
+                {
+                    nMonsterHp = nMonsterHp - nPlayerDemage;
+                    Console.WriteLine("PlayerDemage:" + nPlayerDemage);
+                }
+                Console.WriteLine("2.MonsterHP:" + nMonsterHp);
+                Console.WriteLine("Random:" + nRandom);
+            }
+        }
+
+        //플레이어가 몬스터를 공격하면, 몬스터는 반격한다.
+        //몬스터가 플레이어를 반격하면 몬스터의 공격력만큼 플레이어의 체력이 감소한다.
+        //한쪽이 죽을때 까지 -> 몬스터가 죽거나, 플레이어가 죽으면 끝난다.
+        //언제죽는가? 상대에게 공격당한 뒤
+        static void BattleMain()
+        {
+            int nPlayerDemage = 10;
+            int nMonsterHp = 100;
+
+            int nMonsterDemage = 10;
+            int nPlayerHP = 100;
+
+            Random cRadom = new Random();
+            while (true)
+            {
+                //플레이어가 몬스터를 공격한다.
+                //if (nMonsterHp <= 0) break;
+                int nRandom = cRadom.Next(0, 3);//프로그래밍에서는 항상0부터 시작한다.
+                Console.WriteLine("1.MonsterHP:" + nMonsterHp);
+                if (nRandom == 1)
+                {
+                    nMonsterHp = nMonsterHp - (int)((float)nPlayerDemage * 1.5f);
+                    Console.WriteLine("Critical!!!:" + nPlayerDemage * 1.5f);
+                }
+                else
+                {
+                    nMonsterHp = nMonsterHp - nPlayerDemage;
+                    Console.WriteLine("PlayerDemage:" + nPlayerDemage);
+                }
+                Console.WriteLine("2.MonsterHP:" + nMonsterHp);
+                Console.WriteLine("Random:" + nRandom);
+                if (nMonsterHp <= 0) 
+                { 
+                    Console.WriteLine("Player Win!"); 
+                    break; 
+                }
+
+                //몬스터가 플레이어를 공격한다.
+                nRandom = cRadom.Next(0, 3);//프로그래밍에서는 항상0부터 시작한다.
+                Console.WriteLine("1.PlayerHP:" + nPlayerHP); ;
+                if (nRandom == 1)
+                {
+                    nPlayerHP = nPlayerHP - (int)((float)nMonsterDemage * 1.5f);
+                    Console.WriteLine("Critical!!!:" + nMonsterDemage * 1.5f);
+                }
+                else
+                {
+                    nPlayerHP = nPlayerHP - nMonsterDemage;
+                    Console.WriteLine("MonsterDemage:" + nMonsterDemage);
+                }
+                Console.WriteLine("2.PlayerHP:" + nPlayerHP);
+                Console.WriteLine("Random:" + nRandom);
+                if(nPlayerHP <= 0)
+                {
+                    Console.WriteLine("Monster Win!");
+                    break;
+                }
+                    
+            }
+        }
+        //몬스터의 리스트를 만들고 슬라임,스켈레톤,좀비,드래곤을 저장하고,(이름)
+        //리스트의 첫번째 마지막값을 확인한다.
+        //리스트를 반복문을 이용해 리스트의 모든값을 출력한다.
+        static void MonsterListMaoin()
+        {
+            List<string> listMonsters = new List<string>();
+            listMonsters.Add("slime");
+            listMonsters.Add("skeleton");
+            listMonsters.Add("zombie");
+            listMonsters.Add("Dragon");
+
+            Console.WriteLine("[0]:"+listMonsters[0]);
+            Console.WriteLine("[3]:" + listMonsters[3]);
+
+            for(int i = 0; i < listMonsters.Count; i++)
+            {
+                Console.WriteLine("["+i+"]:" + listMonsters[0]);
+            }
         }
     }
 }
