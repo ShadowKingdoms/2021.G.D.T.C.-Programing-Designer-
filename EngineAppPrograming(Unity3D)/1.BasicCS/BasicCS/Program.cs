@@ -16,7 +16,8 @@ namespace BasicCS
             //CriticalAttackMain();
             //StageMain();
             //CriticalAttackWhileMain();
-            BattleMain();
+            //BattleMain();
+            RPGMain();
             //Console.ReadLine();//종료방지
         }//구문끝
         //매개변수: 함수안에 값을 전달하는 변수
@@ -177,10 +178,10 @@ namespace BasicCS
                 }
                 Console.WriteLine("2.MonsterHP:" + nMonsterHp);
                 Console.WriteLine("Random:" + nRandom);
-                if (nMonsterHp <= 0) 
-                { 
-                    Console.WriteLine("Player Win!"); 
-                    break; 
+                if (nMonsterHp <= 0)
+                {
+                    Console.WriteLine("Player Win!");
+                    break;
                 }
 
                 //몬스터가 플레이어를 공격한다.
@@ -198,18 +199,164 @@ namespace BasicCS
                 }
                 Console.WriteLine("2.PlayerHP:" + nPlayerHP);
                 Console.WriteLine("Random:" + nRandom);
-                if(nPlayerHP <= 0)
+                if (nPlayerHP <= 0)
                 {
                     Console.WriteLine("Monster Win!");
                     break;
                 }
-                    
+
             }
         }
+        //구조체: 정적할당된다. 값을 다른변수에 받을때 복사
+        struct Player
+        {
+            public string strName;
+            public int nHP;
+            public int nDemage;
+            public Player(string name, int hp, int dem)
+            {
+                strName = name;
+                nHP = hp;
+                nDemage = dem;
+            }
+            public void Attack(ref Player target)
+            {
+                target.nHP = target.nHP - this.nDemage;
+            }
+            public bool Death()
+            {
+                if (nHP > 0)
+                    return false;
+                else
+                    return true;
+            }
+            public void Display(string msg)
+            {
+                Console.WriteLine("##### " + msg + " #######");
+                Console.WriteLine("Name:" + strName);
+                Console.WriteLine("Demage:" + nDemage);
+                Console.WriteLine("HP:" + nHP);
+                Console.WriteLine("###################");
+            }
+        }
+
+        static void RPGMain()
+        {
+            Player sPlayer = new Player("player",100,10);
+
+            List<Player> listMonsters = new List<Player>();
+            listMonsters.Add(new Player("slime",100,10));
+            listMonsters.Add(new Player("skeleton", 100, 10));
+            listMonsters.Add(new Player("zombie", 100, 10));
+            listMonsters.Add(new Player("dragon", 100, 10));
+
+            while (true)
+            {
+                for (int i = 0; i < listMonsters.Count; i++)
+                {
+                    Console.WriteLine("[" + i + "]:" + listMonsters[i].strName);
+                }
+                int nIdx = int.Parse(Console.ReadLine());
+                Console.WriteLine("Idx:" + nIdx);
+
+                if (nIdx >= 0 && nIdx < listMonsters.Count) // 0 < idx < conut
+                {
+                    Player sMonster = listMonsters[nIdx];
+
+                    Battle(sPlayer, sMonster);
+                    Battle(sPlayer.nDemage, sPlayer.nHP, sMonster.nDemage, sMonster.nHP);
+                }
+                else
+                {
+                    Console.WriteLine("Exit");
+                    break;
+                }
+            }
+
+        }
+
+        static void Battle(Player player, Player monster)
+        {
+            while (true)
+            {
+                if (player.Death() == false)
+                {
+                    player.Attack(ref monster);
+                    monster.Display("Player Attack!");
+                }
+                else
+                {
+                    Console.WriteLine(monster.strName + " Win!");
+                    break;
+                }
+                if (monster.Death() == false)
+                {
+                    monster.Attack(ref player);
+                    player.Display("Monster Attack!");
+                }
+                else
+                {
+                    Console.WriteLine(player.strName + " Win!");
+                    break;
+                }
+            }
+        }
+
+        static void Battle(int nPlayerDemage,int nPlayerHP, int nMonsterDemage, int nMonsterHp)
+        {
+            Random cRadom = new Random();
+            while (true)
+            {
+                //플레이어가 몬스터를 공격한다.
+                //if (nMonsterHp <= 0) break;
+                int nRandom = cRadom.Next(0, 3);//프로그래밍에서는 항상0부터 시작한다.
+                Console.WriteLine("1.MonsterHP:" + nMonsterHp);
+                if (nRandom == 1)
+                {
+                    nMonsterHp = nMonsterHp - (int)((float)nPlayerDemage * 1.5f);
+                    Console.WriteLine("Critical!!!:" + nPlayerDemage * 1.5f);
+                }
+                else
+                {
+                    nMonsterHp = nMonsterHp - nPlayerDemage;
+                    Console.WriteLine("PlayerDemage:" + nPlayerDemage);
+                }
+                Console.WriteLine("2.MonsterHP:" + nMonsterHp);
+                Console.WriteLine("Random:" + nRandom);
+                if (nMonsterHp <= 0)
+                {
+                    Console.WriteLine("Player Win!");
+                    break;
+                }
+
+                //몬스터가 플레이어를 공격한다.
+                nRandom = cRadom.Next(0, 3);//프로그래밍에서는 항상0부터 시작한다.
+                Console.WriteLine("1.PlayerHP:" + nPlayerHP); ;
+                if (nRandom == 1)
+                {
+                    nPlayerHP = nPlayerHP - (int)((float)nMonsterDemage * 1.5f);
+                    Console.WriteLine("Critical!!!:" + nMonsterDemage * 1.5f);
+                }
+                else
+                {
+                    nPlayerHP = nPlayerHP - nMonsterDemage;
+                    Console.WriteLine("MonsterDemage:" + nMonsterDemage);
+                }
+                Console.WriteLine("2.PlayerHP:" + nPlayerHP);
+                Console.WriteLine("Random:" + nRandom);
+                if (nPlayerHP <= 0)
+                {
+                    Console.WriteLine("Monster Win!");
+                    break;
+                }
+
+            }
+        }
+
         //몬스터의 리스트를 만들고 슬라임,스켈레톤,좀비,드래곤을 저장하고,(이름)
         //리스트의 첫번째 마지막값을 확인한다.
         //리스트를 반복문을 이용해 리스트의 모든값을 출력한다.
-        static void MonsterListMaoin()
+        static void MonsterListMain()
         {
             List<string> listMonsters = new List<string>();
             listMonsters.Add("slime");
@@ -222,8 +369,9 @@ namespace BasicCS
 
             for(int i = 0; i < listMonsters.Count; i++)
             {
-                Console.WriteLine("["+i+"]:" + listMonsters[0]);
+                Console.WriteLine("["+i+"]:" + listMonsters[i]);
             }
         }
     }
 }
+ 
