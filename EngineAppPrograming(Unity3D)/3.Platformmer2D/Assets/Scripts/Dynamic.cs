@@ -28,7 +28,7 @@ public class Dynamic : MonoBehaviour
         {
             if (isJump == false)
             {
-                Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
+                Rigidbody2D rigidbody = this.gameObject.GetComponent<Rigidbody2D>();
                 rigidbody.AddForce(Vector3.up * JumpPower);
                 isJump = true;
             }
@@ -47,17 +47,17 @@ public class Dynamic : MonoBehaviour
         isJump = false;
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
-    {
+    //private void OnCollisionExit2D(Collision2D collision)
+    //{
         
-    }
+    //}
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.name == "cherry")
-        {
-            Score++;
-            Destroy(collision.gameObject);
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.tag == "Item")
+    //    {
+    //        Score++;
+    //        Destroy(collision.gameObject);
+    //    }
+    //}
 }
