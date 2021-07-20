@@ -5,11 +5,14 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     public GameObject objBullet;
+    public Transform trMozzle;
     public float ShotPower;
 
     public void Shot()
     {
-        Rigidbody2D rigidbody = objBullet.GetComponent<Rigidbody2D>();
+        GameObject objCopyBullet = Instantiate(objBullet);
+        objCopyBullet.transform.position = trMozzle.position;
+        Rigidbody2D rigidbody = objCopyBullet.GetComponent<Rigidbody2D>();
         rigidbody.AddForce(Vector3.right * ShotPower);
     }
 
