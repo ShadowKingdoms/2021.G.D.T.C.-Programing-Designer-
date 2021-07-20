@@ -222,6 +222,8 @@ MonoBehaviour:
   JumpPower: 200
   isJump: 0
   Score: 0
+  gun: {fileID: 1157578019}
+  dir: {x: 1, y: 0, z: 0}
 --- !u!70 &160700113
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

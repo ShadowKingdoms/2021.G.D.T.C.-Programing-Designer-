@@ -8,12 +8,12 @@ public class Gun : MonoBehaviour
     public Transform trMozzle;
     public float ShotPower;
 
-    public void Shot()
+    public void Shot(Vector3 dir)
     {
         GameObject objCopyBullet = Instantiate(objBullet);
         objCopyBullet.transform.position = trMozzle.position;
         Rigidbody2D rigidbody = objCopyBullet.GetComponent<Rigidbody2D>();
-        rigidbody.AddForce(Vector3.right * ShotPower);
+        rigidbody.AddForce(dir * ShotPower);
     }
 
     // Start is called before the first frame update
@@ -25,7 +25,6 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            Shot();
+       
     }
 }
