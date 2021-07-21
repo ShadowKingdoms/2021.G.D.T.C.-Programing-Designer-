@@ -7,6 +7,7 @@ public class Responner : MonoBehaviour
     public GameObject objPlayer;
     public bool isRespon = false;
     public string strPrefabName;
+    public float Time = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +28,7 @@ public class Responner : MonoBehaviour
     {
         Debug.Log("ProcessTimmer 1");
         isRespon = true;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(Time);
         GameObject prefabPlayer = Resources.Load("Prefabs/"+strPrefabName) as GameObject;
         objPlayer = Instantiate(prefabPlayer, this.transform.position, Quaternion.identity);
         objPlayer.name = prefabPlayer.name;

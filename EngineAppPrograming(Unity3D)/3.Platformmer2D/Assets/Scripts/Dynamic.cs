@@ -53,6 +53,9 @@ public class Dynamic : MonoBehaviour
 
         if (Input.GetKey(KeyCode.DownArrow))
             transform.position += Vector3.down * Speed * Time.deltaTime;
+
+        if (GameManager.GetInstance().DeathZoneY > this.transform.position.y)
+            Destroy(this.gameObject);
     }
 
     private void OnGUI()
