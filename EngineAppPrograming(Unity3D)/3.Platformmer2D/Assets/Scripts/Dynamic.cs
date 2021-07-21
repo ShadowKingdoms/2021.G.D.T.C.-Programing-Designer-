@@ -8,6 +8,8 @@ public class Dynamic : MonoBehaviour
     public float JumpPower;
     public bool isJump;
 
+    public bool isLodder;
+
     public int Score;
 
     public Gun gun;
@@ -36,19 +38,41 @@ public class Dynamic : MonoBehaviour
             transform.rotation = Quaternion.Euler(Vector3.up * 180);
             dir = Vector3.left;
         }
-        
-        //위아래로 움직이도록 만들기
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+
+        if (isLodder)
+        {
+            //위아래로 움직이도록 만들기
+            if(Input.GetKey(KeyCode.UpArrow))
+            {
+                transform.position += Vector3.up * Speed * Time.deltaTime;
+                GetComponent<Rigidbody2D>().gravityScale = 0;
+            }
+            //if(Input.GetKeyUp(KeyCode.UpArrow) || 
+            //   Input.GetKeyUp(KeyCode.DownArrow))
+            //{
+            //    GetComponent<Rigidbody2D>().gravityScale = 1;
+            //}
+          
+
+            if (Input.GetKey(KeyCode.DownArrow))
+            {
+                transform.position += Vector3.down * Speed * Time.deltaTime;
+                GetComponent<Rigidbody2D>().gravityScale = 0;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (isJump == false)
             {
                 Rigidbody2D rigidbody = this.gameObject.GetComponent<Rigidbody2D>();
+                rigidbody.gravityScale = 1;
+                rigidbody.velocity = Vector2.zero;//기존속도제거
                 rigidbody.AddForce(Vector3.up * JumpPower);
                 isJump = true;
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.X))
             gun.Shot(dir);
 
         if (Input.GetKey(KeyCode.DownArrow))
@@ -61,6 +85,8 @@ public class Dynamic : MonoBehaviour
     private void OnGUI()
     {
         GUI.Box(new Rect(0, 0, 100, 20), "Score:" + Score);
+        GUI.Box(new Rect(0, 20, 100, 20), "Lodder:" + isLodder);
+        GUI.Box(new Rect(0, 40, 100, 20), "Gravity:" + GetComponent<Rigidbody2D>().gravityScale);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -70,7 +96,7 @@ public class Dynamic : MonoBehaviour
 
     //private void OnCollisionExit2D(Collision2D collision)
     //{
-        
+
     //}
 
     //private void OnTriggerEnter2D(Collider2D collision)
@@ -81,4 +107,25 @@ public class Dynamic : MonoBehaviour
     //        Destroy(collision.gameObject);
     //    }
     //}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("OnTriggerEnter2D:"+collision.name);
+        if(collision.gameObject.tag == "Lodder")
+        {
+            isLodder = true;
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;//기존속도제거
+            GetComponent<Rigidbody2D>().gravityScale = 0;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Debug.Log("OnTriggerEnter2D:" + collision.name);
+        if (collision.gameObject.tag == "Lodder")
+        {
+            isLodder = false;
+            GetComponent<Rigidbody2D>().gravityScale = 1;
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;//기존속도제거
+        }
+    }
 }

@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public CameraTracker cameraTracker;
+
+    public Responner responnerPlayer;
+    public Responner responnerOpossum;
+
     public float DeathZoneY = -1;
 
     public void DeathZoneGizmo()
@@ -21,11 +26,6 @@ public class GameManager : MonoBehaviour
         return instance;
     }
 
-    private void OnDrawGizmos()
-    {
-        DeathZoneGizmo();
-    }
-
     // Start is called before the first frame update
     void Start()
     {
@@ -35,8 +35,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+        if(cameraTracker.objTarget == null)
+            cameraTracker.objTarget = responnerPlayer.objPlayer;
     }
 
-   
+    private void OnDrawGizmos()
+    {
+        DeathZoneGizmo();
+    }
 }

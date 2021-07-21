@@ -9,10 +9,13 @@ public class CameraTracker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 vPos = this.transform.position;
-        Vector3 vTargetPos = objTarget.transform.position;
-        vTargetPos.z = vPos.z;
+        if (objTarget)
+        {
+            Vector3 vPos = this.transform.position;
+            Vector3 vTargetPos = objTarget.transform.position;
+            vTargetPos.z = vPos.z;
 
-        this.transform.position = vTargetPos;
+            this.transform.position = vTargetPos;
+        }
     }
 }
