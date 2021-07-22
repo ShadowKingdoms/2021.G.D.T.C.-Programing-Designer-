@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 1222952120909994356}
   - component: {fileID: 1222952120909994359}
   - component: {fileID: 1256514473691559704}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -231,6 +231,7 @@ MonoBehaviour:
   Speed: 1
   JumpPower: 200
   isJump: 0
+  isLodder: 0
   Score: 0
   gun: {fileID: 1222952119788483206}
   dir: {x: 1, y: 0, z: 0}
