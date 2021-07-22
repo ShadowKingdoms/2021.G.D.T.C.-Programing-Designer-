@@ -15,12 +15,22 @@ public class Eagle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 vTargetPos = objTarget.transform.position;
-        Vector3 vPos = this.transform.position;
-        Vector3 vDist = vTargetPos - vPos;
-        Vector3 vDir = vDist.normalized;
-        float fDist = vDist.magnitude;
+        if (objTarget)
+        {
+            Vector3 vTargetPos = objTarget.transform.position;
+            Vector3 vPos = this.transform.position;
+            Vector3 vDist = vTargetPos - vPos;
+            Vector3 vDir = vDist.normalized;
+            float fDist = vDist.magnitude;
 
-        transform.position += vDir * Speed * Time.deltaTime;
+            if (fDist > Speed * Time.deltaTime)
+                transform.position += vDir * Speed * Time.deltaTime;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+            objTarget = collision.gameObject;
     }
 }
