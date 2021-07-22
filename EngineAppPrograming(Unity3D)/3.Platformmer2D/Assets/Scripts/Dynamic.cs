@@ -47,17 +47,10 @@ public class Dynamic : MonoBehaviour
                 transform.position += Vector3.up * Speed * Time.deltaTime;
                 GetComponent<Rigidbody2D>().gravityScale = 0;
             }
-            //if(Input.GetKeyUp(KeyCode.UpArrow) || 
-            //   Input.GetKeyUp(KeyCode.DownArrow))
-            //{
-            //    GetComponent<Rigidbody2D>().gravityScale = 1;
-            //}
-          
-
+         
             if (Input.GetKey(KeyCode.DownArrow))
             {
                 transform.position += Vector3.down * Speed * Time.deltaTime;
-                GetComponent<Rigidbody2D>().gravityScale = 0;
             }
         }
         if (Input.GetKeyDown(KeyCode.Space))
