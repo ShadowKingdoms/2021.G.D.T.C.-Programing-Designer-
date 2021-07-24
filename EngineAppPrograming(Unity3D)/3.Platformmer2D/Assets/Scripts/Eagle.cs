@@ -21,6 +21,7 @@ public class Eagle : MonoBehaviour
             case E_AI_STATE.TRACKING:
                 break;
             case E_AI_STATE.RETRUN:
+                objTarget = objResponPoint;
                 break;
             case E_AI_STATE.PATROL:
                 break;
@@ -33,9 +34,12 @@ public class Eagle : MonoBehaviour
         switch (curAIState)
         {
             case E_AI_STATE.TRACKING:
+                if (objTarget == null)
+                    SetAIState(E_AI_STATE.RETRUN);
                 break;
             case E_AI_STATE.RETRUN:
-                UpdateReturn();
+                if(isMove == false)
+                    SetAIState(E_AI_STATE.PATROL);
                 break;
             case E_AI_STATE.PATROL:
                 UpdatePatrol(objResponPoint, objPatrolPoint);
@@ -45,37 +49,43 @@ public class Eagle : MonoBehaviour
 
     public void UpdatePatrol(GameObject objA, GameObject objB)
     {
-        if(objTarget.name == objA.name)
+        if (isMove == false)
         {
-            if (isMove == false)
+            if (objTarget.name == objA.name)
+            {
                 objTarget = objB;
-        }
-        else if(objTarget.name == objB.name)
-        {
-            if (isMove == false)
+            }
+            else if (objTarget.name == objB.name)
+            {
                 objTarget = objA;
+            }
         }
+    }
+
+    private void Start()
+    {
+        SetAIState(curAIState);
     }
 
     // Update is called once per frame
     void Update()
     {
         UpdataMove();
-        UpdateReturn();
-        UpdatePatrol(objResponPoint, objPatrolPoint);
+
+        UpdateAIState();
     }
 
     private void FixedUpdate()
     {
-        UpdateFindTargetLayer();
+        if (UpdateFindTargetLayer())
+            SetAIState(E_AI_STATE.TRACKING);
         //UpdateFindTargetLayerAll();
         
     }
 
-    void UpdateReturn()
+    void SetReturn()
     {
-        if (objTarget == null)
-            objTarget = objResponPoint;
+        objTarget = objResponPoint;
     }
 
     void UpdataMove()
@@ -98,7 +108,7 @@ public class Eagle : MonoBehaviour
         }
     }
 
-    void UpdateFindTargetLayer()
+    bool UpdateFindTargetLayer()
     {
         int nLayer = 1 << LayerMask.NameToLayer("Player");
         Collider2D collider = 
@@ -108,7 +118,9 @@ public class Eagle : MonoBehaviour
         {
             objTarget = collider.gameObject;
             Debug.Log("FindTarget:" + collider.gameObject.name);
+            return true;
         }
+        return false;
     }
 
     void UpdateFindTargetLayerAll()

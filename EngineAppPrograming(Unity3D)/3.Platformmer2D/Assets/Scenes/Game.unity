@@ -2777,6 +2777,11 @@ PrefabInstance:
       propertyPath: objPatrolPoint
       value: 
       objectReference: {fileID: 1006249758}
+    - target: {fileID: 5451512641011667751, guid: 206579e1990214c4897d1efadc509d13,
+        type: 3}
+      propertyPath: curAIState
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5451512641011667750, guid: 206579e1990214c4897d1efadc509d13, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 206579e1990214c4897d1efadc509d13, type: 3}
