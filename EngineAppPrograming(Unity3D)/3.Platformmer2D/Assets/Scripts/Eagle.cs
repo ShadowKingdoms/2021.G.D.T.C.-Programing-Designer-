@@ -11,6 +11,38 @@ public class Eagle : MonoBehaviour
     public GameObject objPatrolPoint;
     public bool isMove;
 
+    public enum E_AI_STATE { TRACKING, RETRUN, PATROL };
+    public E_AI_STATE curAIState;
+
+    void SetAIState(E_AI_STATE state)
+    {
+        switch(state)
+        {
+            case E_AI_STATE.TRACKING:
+                break;
+            case E_AI_STATE.RETRUN:
+                break;
+            case E_AI_STATE.PATROL:
+                break;
+        }
+        curAIState = state;
+    }
+
+    void UpdateAIState()
+    {
+        switch (curAIState)
+        {
+            case E_AI_STATE.TRACKING:
+                break;
+            case E_AI_STATE.RETRUN:
+                UpdateReturn();
+                break;
+            case E_AI_STATE.PATROL:
+                UpdatePatrol(objResponPoint, objPatrolPoint);
+                break;
+        }
+    }
+
     public void UpdatePatrol(GameObject objA, GameObject objB)
     {
         if(objTarget.name == objA.name)
@@ -28,6 +60,26 @@ public class Eagle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdataMove();
+        UpdateReturn();
+        UpdatePatrol(objResponPoint, objPatrolPoint);
+    }
+
+    private void FixedUpdate()
+    {
+        UpdateFindTargetLayer();
+        //UpdateFindTargetLayerAll();
+        
+    }
+
+    void UpdateReturn()
+    {
+        if (objTarget == null)
+            objTarget = objResponPoint;
+    }
+
+    void UpdataMove()
+    {
         if (objTarget)
         {
             Vector3 vTargetPos = objTarget.transform.position;
@@ -44,17 +96,6 @@ public class Eagle : MonoBehaviour
             else
                 isMove = false;
         }
-
-        UpdatePatrol(objResponPoint, objPatrolPoint);
-    }
-
-    private void FixedUpdate()
-    {
-        //UpdateFindTargetLayer();
-        UpdateFindTargetLayerAll();
-
-        if (objTarget == null)
-            objTarget = objResponPoint;
     }
 
     void UpdateFindTargetLayer()
@@ -92,9 +133,9 @@ public class Eagle : MonoBehaviour
         Gizmos.DrawWireSphere(this.transform.position, Site);
     }
 
-//    p rivate void OnTriggerEnter2D(Collider2D collision)
-//    {
-//        if(collision.gameObject.tag == "Player")
-//            objTarget = collision.gameObject;
-//    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+            objTarget = collision.gameObject;
+    }
 }
