@@ -147,7 +147,14 @@ public class Eagle : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("OnTriggerEnter2D:"+collision.gameObject.name);
         if (collision.gameObject.tag == "Player")
-            objTarget = collision.gameObject;
+        {
+            //Destroy(collision.gameObject);
+            Player me = this.GetComponent<Player>();
+            Player target = collision.gameObject.GetComponent<Player>();
+
+            me.Attack(target);
+        }
     }
 }
