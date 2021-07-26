@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\Opossum.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\Responner.cs" />
+    <Compile Include="Assets\Scripts\SuperMode.cs" />
     <None Include="Assets\Scripts\ClassDiagram1.cd" />
     <None Include="Assets\WorkList.txt" />
     <Reference Include="UnityEngine">
