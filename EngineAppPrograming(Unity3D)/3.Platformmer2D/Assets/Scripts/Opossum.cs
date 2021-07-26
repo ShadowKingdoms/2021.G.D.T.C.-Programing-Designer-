@@ -19,13 +19,18 @@ public class Opossum : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Attack();
+    }
+
+    void Attack()
+    {
         Vector2 vPos = transform.position;
         BoxCollider2D boxCollider = this.GetComponent<BoxCollider2D>();
-        int nLayer = 1<<LayerMask.NameToLayer("Player");
-        Collider2D collider = 
+        int nLayer = 1 << LayerMask.NameToLayer("Player");
+        Collider2D collider =
             Physics2D.OverlapBox(vPos + boxCollider.offset, boxCollider.size, 0, nLayer);
 
-        if(collider)//콜라이더가 있을때
+        if (collider)//콜라이더가 있을때
         {
             Player me = this.GetComponent<Player>();
             Player target = collider.gameObject.GetComponent<Player>();
