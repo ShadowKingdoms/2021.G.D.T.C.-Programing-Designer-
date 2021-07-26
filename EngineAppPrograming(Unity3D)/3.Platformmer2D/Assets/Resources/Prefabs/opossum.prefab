@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4348012148336220710}
   - component: {fileID: 2072694311001963461}
   - component: {fileID: -764803723887203195}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: opossum
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.029879779, y: -0.009054482}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -144,7 +144,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.36, y: 0.28}
+  m_Size: {x: 0.30024046, y: 0.261891}
   m_EdgeRadius: 0
 --- !u!114 &2072694311001963461
 MonoBehaviour:
