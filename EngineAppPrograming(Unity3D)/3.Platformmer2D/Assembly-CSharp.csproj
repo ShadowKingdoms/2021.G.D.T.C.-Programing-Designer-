@@ -73,10 +73,13 @@
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Gun.cs" />
     <Compile Include="Assets\Scripts\Item.cs" />
+    <Compile Include="Assets\Scripts\MobileController.cs" />
     <Compile Include="Assets\Scripts\Opossum.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\Responner.cs" />
     <Compile Include="Assets\Scripts\SuperMode.cs" />
+    <Compile Include="Assets\Scripts\Timmer.cs" />
+    <Compile Include="Assets\Sunnyland\artwork\Animatior\AnimationTest.cs" />
     <None Include="Assets\Scripts\ClassDiagram1.cd" />
     <None Include="Assets\WorkList.txt" />
     <Reference Include="UnityEngine">
@@ -689,7 +692,16 @@
       <HintPath>C:/Users/KHG/source/repos/2021.G.D.T.C.(Programing&amp;Designer)/EngineAppPrograming(Unity3D)/3.Platformmer2D/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup></ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="SimpleInput.Runtime.csproj">
+      <Project>{C0F8F36C-CDA1-BB8A-5CCA-58C93B37E764}</Project>
+      <Name>SimpleInput.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="SimpleInput.Editor.csproj">
+      <Project>{BD0E3101-2336-4D82-F3D0-302FDE4DE91B}</Project>
+      <Name>SimpleInput.Editor</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
