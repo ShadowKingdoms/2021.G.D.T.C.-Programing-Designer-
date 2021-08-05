@@ -50,7 +50,10 @@ public class Dynamic : MonoBehaviour
     {
         transform.position += dir * Speed * Time.deltaTime;
         //transform.Rotate(Vector3.up * 0);
-        transform.rotation = Quaternion.Euler(dir * 0);
+        if (dir == Vector3.right)
+            transform.rotation = Quaternion.Euler(Vector3.up * 0);
+        else if(dir == Vector3.left)
+            transform.rotation = Quaternion.Euler(Vector3.up * 180);
         this.dir = dir;
     }
 
