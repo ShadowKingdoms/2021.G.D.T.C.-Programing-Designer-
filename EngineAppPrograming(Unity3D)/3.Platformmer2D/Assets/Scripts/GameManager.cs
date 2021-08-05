@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         instance = this;
+        SetGUIScene(curGUIState);
     }
 
     // Update is called once per frame
@@ -56,4 +57,54 @@ public class GameManager : MonoBehaviour
     {
         DeathZoneGizmo();
     }
+
+    public void EventChageScene(int stateNumber)
+    {
+        SetGUIScene((E_GUI_STATE)stateNumber);
+    }
+
+    public List<GameObject> listGUIScenes;
+    public enum E_GUI_STATE { TITLE, THEEND, GAMEOVER, PLAY }
+    public E_GUI_STATE curGUIState;
+    public void ShowScenec(E_GUI_STATE state)
+    {
+        for (int i = 0; i < listGUIScenes.Count; i++)
+        {
+            if ((E_GUI_STATE)i == state)
+                listGUIScenes[i].SetActive(true);
+            else
+                listGUIScenes[i].SetActive(false);
+        }
+    }
+    public void SetGUIScene(E_GUI_STATE state)
+    {
+        switch (state)
+        {
+            case E_GUI_STATE.TITLE:
+                break;
+            case E_GUI_STATE.THEEND:
+                break;
+            case E_GUI_STATE.GAMEOVER:
+                break;
+            case E_GUI_STATE.PLAY:
+                break;
+        }
+        ShowScenec(state);
+        curGUIState = state;
+    }
+    public void UpdateState()
+    {
+        switch (curGUIState)
+        {
+            case E_GUI_STATE.TITLE:
+                break;
+            case E_GUI_STATE.THEEND:
+                break;
+            case E_GUI_STATE.GAMEOVER:
+                break;
+            case E_GUI_STATE.PLAY:
+                break;
+        }
+    }
+
 }
