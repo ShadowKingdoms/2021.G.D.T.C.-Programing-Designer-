@@ -1,22 +1,51 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
+[Serializable]
+public struct PlayerStatus
+{
+    public int nMP;
+    public int nHP;
+    public int nDemage;
+
+    public static PlayerStatus operator+(PlayerStatus a, PlayerStatus b)
+    {
+        PlayerStatus temp;
+        temp.nDemage = a.nDemage + b.nDemage;
+        temp.nMP = a.nMP + b.nMP;
+        temp.nHP = a.nHP + b.nHP;
+        return temp;
+    }
+
+    public static PlayerStatus operator -(PlayerStatus a, PlayerStatus b)
+    {
+        PlayerStatus temp;
+        temp.nDemage = a.nDemage - b.nDemage;
+        temp.nMP = a.nMP - b.nMP;
+        temp.nHP = a.nHP - b.nHP;
+        return temp;
+    }
+}
 
 public class Player : MonoBehaviour
 {
-    public int nHP = 10;
-    public int nDemage = 10;
+    public int nMaxMP;
+    public int nMaxHP;
+    public PlayerStatus playerStatus;
+    public PlayerStatus incPlayerStatus;
 
     public int nExp;
+    public int nMaxExp = 100;
     public int nLv = 1;
 
-    public void LvUp()
+    public void LvUp(PlayerStatus inc)
     {
-        if(nExp >= 100)
+        if(nExp >= nMaxExp)
         {
-            nHP += 10;
-            nDemage += 10;
-            nExp -= 100;
+            playerStatus += inc;
+            nExp -= nMaxExp;
             nLv++;
         }
     }
@@ -29,12 +58,12 @@ public class Player : MonoBehaviour
 
     public void Attack(Player target)
     {
-        target.nHP = target.nHP - this.nDemage;
+        target.playerStatus.nHP = target.playerStatus.nHP - this.playerStatus.nDemage;
     }
 
     public bool Death()
     {
-        if (nHP > 0)
+        if (playerStatus.nHP > 0)
             return false;
         else
             return true;
@@ -47,15 +76,16 @@ public class Player : MonoBehaviour
         Vector2 vSize = new Vector2(100, 20);
         int nLine = 0;
         GUI.Box(new Rect(vPos.x + (vSize.x * nDebugIdx), vPos.y + (vSize.y * nLine), vSize.x, vSize.y), "Name:" + gameObject.name); nLine++;
-        GUI.Box(new Rect(vPos.x + (vSize.x * nDebugIdx), vPos.y + (vSize.y*nLine) , vSize.x, vSize.y), "HP:" + nHP); nLine++;
-        GUI.Box(new Rect(vPos.x + (vSize.x * nDebugIdx), vPos.y + (vSize.y * nLine), vSize.x, vSize.y), "Demage:" + nDemage); nLine++;
+        GUI.Box(new Rect(vPos.x + (vSize.x * nDebugIdx), vPos.y + (vSize.y*nLine) , vSize.x, vSize.y), "HP:" + playerStatus.nHP); nLine++;
+        GUI.Box(new Rect(vPos.x + (vSize.x * nDebugIdx), vPos.y + (vSize.y * nLine), vSize.x, vSize.y), "Demage:" + playerStatus.nDemage); nLine++;
         GUI.Box(new Rect(vPos.x + (vSize.x * nDebugIdx), vPos.y + (vSize.y * nLine), vSize.x, vSize.y), "Lv/Exp:" + nLv + "/" + nExp); nLine++;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        nMaxHP = playerStatus.nHP;
+        nMaxMP = playerStatus.nMP;
     }
 
     // Update is called once per frame
@@ -64,6 +94,6 @@ public class Player : MonoBehaviour
         if (Death())
             Destroy(this.gameObject);
 
-        LvUp();
+        LvUp(incPlayerStatus);
     }
 }

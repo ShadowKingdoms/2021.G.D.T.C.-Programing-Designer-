@@ -5002,6 +5002,36 @@ PrefabInstance:
       propertyPath: jumpLayer.m_Bits
       value: 1024
       objectReference: {fileID: 0}
+    - target: {fileID: 4359232477344762855, guid: 6af01f739c24c0e4b9ca970f513c32ae,
+        type: 3}
+      propertyPath: playerStatus.nMP
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4359232477344762855, guid: 6af01f739c24c0e4b9ca970f513c32ae,
+        type: 3}
+      propertyPath: playerStatus.nHP
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4359232477344762855, guid: 6af01f739c24c0e4b9ca970f513c32ae,
+        type: 3}
+      propertyPath: playerStatus.nDemage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4359232477344762855, guid: 6af01f739c24c0e4b9ca970f513c32ae,
+        type: 3}
+      propertyPath: incPlayerStatus.nMP
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4359232477344762855, guid: 6af01f739c24c0e4b9ca970f513c32ae,
+        type: 3}
+      propertyPath: incPlayerStatus.nHP
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4359232477344762855, guid: 6af01f739c24c0e4b9ca970f513c32ae,
+        type: 3}
+      propertyPath: incPlayerStatus.nDemage
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6af01f739c24c0e4b9ca970f513c32ae, type: 3}
 --- !u!1001 &4348012149920740363

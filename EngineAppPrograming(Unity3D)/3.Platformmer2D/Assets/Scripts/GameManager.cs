@@ -81,12 +81,18 @@ public class GameManager : MonoBehaviour
         switch (state)
         {
             case E_GUI_STATE.TITLE:
+                //단, 타이머관련된 기능과 애니메이션관련 기능이 모두 정지된다.
+                //deltaTime * timeScale
+                Time.timeScale = 0;
                 break;
             case E_GUI_STATE.THEEND:
+                Time.timeScale = 0;
                 break;
             case E_GUI_STATE.GAMEOVER:
+                Time.timeScale = 0;
                 break;
             case E_GUI_STATE.PLAY:
+                Time.timeScale = 1;
                 break;
         }
         ShowScenec(state);
