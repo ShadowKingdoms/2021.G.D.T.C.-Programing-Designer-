@@ -132,9 +132,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1eaf7d372104e488cf1a27b06c6953, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nHP: 10
-  nDemage: 10
+  nMaxMP: 0
+  nMaxHP: 0
+  playerStatus:
+    nMP: 100
+    nHP: 50
+    nDemage: 10
+  incPlayerStatus:
+    nMP: 0
+    nHP: 5
+    nDemage: 10
   nExp: 500
+  nMaxExp: 100
   nLv: 1
   nDebugIdx: 3
 --- !u!114 &3021074303133365562

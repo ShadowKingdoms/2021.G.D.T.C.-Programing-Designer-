@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour
             cameraTracker.objTarget = responnerPlayer.objPlayer;
 
         UpdateEagleRetrunPointCheck();
+        UpdateState();
     }
 
     private void UpdateEagleRetrunPointCheck()
@@ -66,6 +68,27 @@ public class GameManager : MonoBehaviour
     public List<GameObject> listGUIScenes;
     public enum E_GUI_STATE { TITLE, THEEND, GAMEOVER, PLAY }
     public E_GUI_STATE curGUIState;
+
+    public Text textPlayerName;
+    public Text textPlayerLv;
+    public GUIStatusBar guiPlayerHp;
+    public GUIStatusBar guiPlayerMp;
+    public GUIStatusBar guiPlayerExp;
+
+    public void UpdatePlayerStatus()
+    {
+        if(responnerPlayer.objPlayer)
+        {
+            Player player = responnerPlayer.objPlayer.GetComponent<Player>();
+
+            textPlayerLv.text = string.Format("Lv.{0}",player.nLv);
+            textPlayerName.text = responnerPlayer.objPlayer.name;
+            guiPlayerHp.SetValue(player.playerStatus.nHP, player.nMaxHP);
+            guiPlayerMp.SetValue(player.playerStatus.nMP, player.nMaxMP);
+            guiPlayerExp.SetValue(player.nExp, player.nMaxExp);
+        }
+    }
+
     public void ShowScenec(E_GUI_STATE state)
     {
         for (int i = 0; i < listGUIScenes.Count; i++)
@@ -109,6 +132,7 @@ public class GameManager : MonoBehaviour
             case E_GUI_STATE.GAMEOVER:
                 break;
             case E_GUI_STATE.PLAY:
+                UpdatePlayerStatus();
                 break;
         }
     }
