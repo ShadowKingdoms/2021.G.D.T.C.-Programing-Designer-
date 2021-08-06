@@ -40,27 +40,36 @@ public class Player : MonoBehaviour
     public int nMaxExp = 100;
     public int nLv = 1;
 
+    public GUIStatusBar guiHPBar;
+    public GUIStatusBar guiMPBar;
+    public GUIStatusBar guiExpBar;
+
+    public void UpdateStatusBar()
+    {
+        if(guiHPBar) guiHPBar.SetValue(playerStatus.nHP, nMaxHP);
+        if(guiMPBar) guiMPBar.SetValue(playerStatus.nMP, nMaxMP);
+        if(guiExpBar) guiExpBar.SetValue(nExp, nMaxExp);
+    }
     public void LvUp(PlayerStatus inc)
     {
         if(nExp >= nMaxExp)
         {
             playerStatus += inc;
+            nMaxHP += inc.nHP;
+            nMaxMP += inc.nMP;
             nExp -= nMaxExp;
             nLv++;
         }
     }
-
     public void StillExp(Player target)
     {
         Debug.Log("StillExp:"+target.gameObject.name);
         this.nExp += (target.nExp + target.nLv * 100);
     }
-
     public void Attack(Player target)
     {
         target.playerStatus.nHP = target.playerStatus.nHP - this.playerStatus.nDemage;
     }
-
     public bool Death()
     {
         if (playerStatus.nHP > 0)
@@ -87,7 +96,6 @@ public class Player : MonoBehaviour
         nMaxHP = playerStatus.nHP;
         nMaxMP = playerStatus.nMP;
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -95,5 +103,6 @@ public class Player : MonoBehaviour
             Destroy(this.gameObject);
 
         LvUp(incPlayerStatus);
+        UpdateStatusBar();
     }
 }
