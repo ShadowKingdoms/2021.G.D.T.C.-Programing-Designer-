@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public string strVer = "Ver.0.00.00";
+    public Text textVer;
+
     public CameraTracker cameraTracker;
 
     public Responner responnerPlayer;
@@ -32,6 +35,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         instance = this;
+        textVer.text = strVer;
         SetGUIScene(curGUIState);
     }
 

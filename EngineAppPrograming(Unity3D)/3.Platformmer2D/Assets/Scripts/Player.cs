@@ -78,9 +78,13 @@ public class Player : MonoBehaviour
             return true;
     }
 
-    public void Recovery()
+    public bool Recovery()
     {
-        playerStatus.nHP = nMaxHP;
+        if (playerStatus.nHP == nMaxHP)
+            return false;
+        else
+            playerStatus.nHP = nMaxHP;
+        return true;
     }
 
     public int nDebugIdx;

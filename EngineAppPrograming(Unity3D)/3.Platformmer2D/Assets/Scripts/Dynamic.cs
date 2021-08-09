@@ -25,6 +25,7 @@ public class Dynamic : MonoBehaviour
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        gun.master = GetComponent<Player>();
     }
 
     private void FixedUpdate()
@@ -35,7 +36,7 @@ public class Dynamic : MonoBehaviour
 
         if (raycastHit)
         {
-            Debug.Log("hit:"+raycastHit.collider.gameObject.name);
+            //Debug.Log("hit:"+raycastHit.collider.gameObject.name);
             isJump = false;
             Debug.DrawLine(vOrigin, vOrigin + Vector3.down * rayDist, Color.red);
         }
@@ -71,7 +72,7 @@ public class Dynamic : MonoBehaviour
 
     public void Attack()
     {
-        gun.Shot(dir, GetComponent<Player>());
+        gun.Shot(dir);
     }
 
     // Update is called once per frame
@@ -131,14 +132,8 @@ public class Dynamic : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.X))
-            gun.Shot(dir, GetComponent<Player>());
-
         if (Input.GetKey(KeyCode.DownArrow))
             transform.position += Vector3.down * Speed * Time.deltaTime;
-
-        if (GameManager.GetInstance().DeathZoneY > this.transform.position.y)
-            Destroy(this.gameObject);
     }
 
     //private void OnGUI()
