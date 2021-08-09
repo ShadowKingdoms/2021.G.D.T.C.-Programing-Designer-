@@ -141,12 +141,12 @@ public class Dynamic : MonoBehaviour
             Destroy(this.gameObject);
     }
 
-    private void OnGUI()
-    {
-        GUI.Box(new Rect(0, 0, 100, 20), "Score:" + Score);
-        GUI.Box(new Rect(0, 20, 100, 20), "Lodder:" + isLodder);
-        GUI.Box(new Rect(0, 40, 100, 20), "Gravity:" + GetComponent<Rigidbody2D>().gravityScale);
-    }
+    //private void OnGUI()
+    //{
+    //    GUI.Box(new Rect(0, 0, 100, 20), "Score:" + Score);
+    //    GUI.Box(new Rect(0, 20, 100, 20), "Lodder:" + isLodder);
+    //    GUI.Box(new Rect(0, 40, 100, 20), "Gravity:" + GetComponent<Rigidbody2D>().gravityScale);
+    //}
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

@@ -131,6 +131,7 @@ MonoBehaviour:
   trMozzle: {fileID: 1222952119531762651}
   ShotPower: 300
   nBulletCount: 5
+  eGunState: 1
 --- !u!1 &1222952120909994344
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,6 +319,9 @@ MonoBehaviour:
   nExp: 10
   nMaxExp: 100
   nLv: 1
+  guiHPBar: {fileID: 0}
+  guiMPBar: {fileID: 0}
+  guiExpBar: {fileID: 0}
   nDebugIdx: 1
 --- !u!114 &6010525002166970304
 MonoBehaviour:

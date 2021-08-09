@@ -45,29 +45,4 @@ public class MobileController : MonoBehaviour
             Debug.Log("SimpleInput.Attack!");
         }
     }
-
-    private void OnGUI()
-    {
-        int nWight = 50;
-        int nHeight = 50;
-
-        int nTopMagin = Screen.width - nHeight + 10;
-        int nLeftMagin = 10;
-
-        int x = 10;
-        int y = 10;
-
-        Rect rectLeft = new Rect(x, y+nTopMagin, nWight, nHeight);
-        Rect rectRight = new Rect(x + nWight + nLeftMagin, y+nTopMagin, nWight, nHeight);
-
-        if (GUI.Button(rectRight, "▶"))
-        {
-            dynamic.Move(Vector3.right);
-        }
-        
-        if(GUI.Button(rectLeft, "◀"))
-        {
-            dynamic.Move(Vector3.left);
-        }
-    }
 }
