@@ -16,6 +16,27 @@ public class GameManager : MonoBehaviour
 
     public float DeathZoneY = -1;
 
+    public ItemIventory itemIventory;
+    public void EventEatItem(Item.ITEM_KIND item_kind)
+    {
+        itemIventory.SetIventory(item_kind);
+    }
+
+    public void EventItemUse(Item.ITEM_KIND item_kind, GameObject obj)
+    {
+        Item.Use(item_kind, obj);
+        itemIventory.RemoveIventory(item_kind);
+    }
+
+    public void EventItemUsePlayer(Item.ITEM_KIND item_kind)
+    {
+        if (responnerPlayer.objPlayer)
+        {
+            Item.Use(item_kind, responnerPlayer.objPlayer);
+            itemIventory.RemoveIventory(item_kind);
+        }
+    }
+
     public void DeathZoneGizmo()
     {
         Vector3 vStartPos = new Vector3(-9999999999, DeathZoneY, 0);

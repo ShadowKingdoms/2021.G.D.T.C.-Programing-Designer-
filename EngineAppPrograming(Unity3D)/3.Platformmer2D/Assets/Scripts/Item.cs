@@ -7,6 +7,38 @@ public class Item : MonoBehaviour
     public int Score;
     public enum ITEM_KIND { SUPER_MODE, RECOVERY, LASER, BULLET, GRENADE  }
     public ITEM_KIND item_kind;
+
+    public static bool Use(ITEM_KIND item_kind, GameObject obj)
+    {
+        Dynamic dynamic = obj.GetComponent<Dynamic>();
+        switch (item_kind)
+        {
+            case ITEM_KIND.SUPER_MODE:
+                SuperMode superMode = obj.GetComponent<SuperMode>();
+                superMode.OnMode();
+                break;
+            case ITEM_KIND.RECOVERY:
+                Player player = obj.GetComponent<Player>();
+                if (player.Recovery() == false)
+                {
+                    return false;
+                }
+                break;
+            case ITEM_KIND.LASER:
+                //Dynamic dynamic = collision.gameObject.GetComponent<Dynamic>();
+                dynamic.gun.eGunState = Gun.E_GUN_STATE.LASER_GUN;
+                break;
+            case ITEM_KIND.BULLET:
+                //Dynamic dynamic = collision.gameObject.GetComponent<Dynamic>();
+                dynamic.gun.eGunState = Gun.E_GUN_STATE.BULLET_GUN;
+                break;
+            case ITEM_KIND.GRENADE:
+
+                break;
+        }
+        return true;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,34 +55,7 @@ public class Item : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            Dynamic dynamic = collision.gameObject.GetComponent<Dynamic>();
-            switch(item_kind)
-            {
-                case ITEM_KIND.SUPER_MODE:
-                    SuperMode superMode = collision.gameObject.GetComponent<SuperMode>();
-                    superMode.OnMode();
-                    break;
-                case ITEM_KIND.RECOVERY:
-                    Player player = collision.gameObject.GetComponent<Player>();
-                    if(player.Recovery() == false)
-                    {
-                        dynamic.Score += Score;
-                    }
-                    break;
-                case ITEM_KIND.LASER:
-                    //Dynamic dynamic = collision.gameObject.GetComponent<Dynamic>();
-                    dynamic.gun.eGunState = Gun.E_GUN_STATE.LASER_GUN;
-                    break;
-                case ITEM_KIND.BULLET:
-                    //Dynamic dynamic = collision.gameObject.GetComponent<Dynamic>();
-                    dynamic.gun.eGunState = Gun.E_GUN_STATE.BULLET_GUN;
-                    break;
-                case ITEM_KIND.GRENADE:
-
-                    break;
-            }
-
-
+            GameManager.GetInstance().EventEatItem(item_kind);
             Destroy(this.gameObject);
         }
     }
