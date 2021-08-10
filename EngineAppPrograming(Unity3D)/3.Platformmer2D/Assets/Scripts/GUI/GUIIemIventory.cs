@@ -1,0 +1,56 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class GUIIemIventory : MonoBehaviour
+{
+    public List<GUIItemButton> listItemButtens;
+    public RectTransform rectContent;
+
+    public void AddButton(Item.ITEM_KIND item_kind)
+    {
+        GameObject prefab = Resources.Load("Prefabs/GUI/" + item_kind.ToString()) as GameObject;
+        GameObject objButton = Instantiate(prefab, rectContent.transform);
+        GUIItemButton guiItemButton = objButton.GetComponent<GUIItemButton>();
+        guiItemButton.Set(item_kind);
+        listItemButtens.Add(guiItemButton);
+    }
+
+    public void RemoveButton(GUIItemButton guiItemButton)
+    {
+        listItemButtens.Remove(guiItemButton);
+    }
+
+    public void ResizeContent()
+    {
+        GridLayoutGroup gridLayoutGroup = rectContent.GetComponent<GridLayoutGroup>();
+        Vector2 vCellSize = gridLayoutGroup.cellSize;
+        Vector2 vSpacing = gridLayoutGroup.spacing;
+        Vector2 vArea = vCellSize + vSpacing;
+        Vector2 vContentSize = rectContent.sizeDelta;
+        int nButtonCount = listItemButtens.Count;
+        //500 // 95+5 = 5 //18/5 = 3 // 18 % 5 = 3 //3++ 4
+        int nCow = (int)vContentSize.x / (int)(vArea.x);
+        int nRaw = nButtonCount / nCow;
+        if (nButtonCount % nCow > 0) nRaw++;
+        float fHeight = nRaw * vArea.y;
+        vContentSize.y = fHeight;
+       //rectContent.sizeDelta.y = fHeight;//구조체는 정적할당되므로 참조할수없다.
+        rectContent.sizeDelta = vContentSize;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        //for(int i = 0; i<18; i++)
+        //    AddButton(Item.ITEM_KIND.RECOVERY);
+        //ResizeContent();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}

@@ -94,11 +94,27 @@ public class GameManager : MonoBehaviour
     public enum E_GUI_STATE { TITLE, THEEND, GAMEOVER, PLAY }
     public E_GUI_STATE curGUIState;
 
+    public GameObject objPopupLayer;
+
     public Text textPlayerName;
     public Text textPlayerLv;
     public GUIStatusBar guiPlayerHp;
     public GUIStatusBar guiPlayerMp;
     public GUIStatusBar guiPlayerExp;
+
+    public GUIIemIventory guiItemIventory;
+
+    public void EventItemIventory()
+    {
+        if (objPopupLayer.activeSelf)
+        {
+            objPopupLayer.SetActive(false);
+        }
+        else
+        {
+            objPopupLayer.SetActive(true);
+        }
+    }
 
     public void UpdatePlayerStatus()
     {

@@ -10,7 +10,8 @@ public class GUIItemButton : MonoBehaviour
 
     public void Set(Item.ITEM_KIND item_kind)
     {
-
+        Button button = this.GetComponent<Button>();
+        button.onClick.AddListener( ()=>OnClickEvent(item_kind) );
     }
 
     public void OnClickEvent(Item.ITEM_KIND item_kind)
