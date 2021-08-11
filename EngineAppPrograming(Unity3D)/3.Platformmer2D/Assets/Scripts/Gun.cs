@@ -31,9 +31,8 @@ public class Gun : MonoBehaviour
 
                 if (target && superMode && superMode.isUes == false)
                 {
-                    //master.Attack(target);
-
-                    //superMode.OnMode();
+                    master.Attack(target);
+                    superMode.OnMode();
                 }
             }
             yield return new WaitForSeconds(Time);
