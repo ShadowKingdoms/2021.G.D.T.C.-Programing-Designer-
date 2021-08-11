@@ -38,7 +38,7 @@ public class ItemIventory : MonoBehaviour
         SetIventory(Item.ITEM_KIND.BULLET);
         SetIventory(Item.ITEM_KIND.LASER);
         SetIventory(Item.ITEM_KIND.RECOVERY);
-        SetIventory(Item.ITEM_KIND.GRENADE);
+        //SetIventory(Item.ITEM_KIND.GRENADE);
         SetIventory(Item.ITEM_KIND.SUPER_MODE);
     }
 

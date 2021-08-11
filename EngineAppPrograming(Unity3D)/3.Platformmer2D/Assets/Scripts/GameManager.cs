@@ -174,6 +174,21 @@ public class GameManager : MonoBehaviour
                 break;
             case E_GUI_STATE.PLAY:
                 UpdatePlayerStatus();
+
+                if(Input.GetKeyDown(KeyCode.I))
+                {
+                    EventItemIventory();
+                }
+
+                if(objPopupLayer.activeSelf)
+                {
+                   if(itemIventory.listItems.Count != guiItemIventory.listItemButtens.Count)
+                    {
+                        guiItemIventory.ClearIventory();
+                        guiItemIventory.SetIventory(itemIventory);
+                    }
+                }
+
                 break;
         }
     }

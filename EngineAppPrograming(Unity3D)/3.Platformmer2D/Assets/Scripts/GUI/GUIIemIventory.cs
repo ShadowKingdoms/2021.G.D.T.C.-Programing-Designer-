@@ -22,6 +22,24 @@ public class GUIIemIventory : MonoBehaviour
         listItemButtens.Remove(guiItemButton);
     }
 
+    public void SetIventory(ItemIventory itemIventory)
+    {
+        foreach(var item in itemIventory.listItems)
+        {
+            AddButton(item);
+        }
+        ResizeContent();
+    }
+
+    public void ClearIventory()
+    {
+        foreach(var btn in listItemButtens)
+        {
+            Destroy(btn.gameObject);
+        }
+        listItemButtens.Clear();
+    }
+
     public void ResizeContent()
     {
         GridLayoutGroup gridLayoutGroup = rectContent.GetComponent<GridLayoutGroup>();
@@ -43,8 +61,13 @@ public class GUIIemIventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //for(int i = 0; i<18; i++)
-        //    AddButton(Item.ITEM_KIND.RECOVERY);
+        //int nItemKind = 0;
+        //for (int i = 0; i < 3; i++)
+        //{
+        //    //if (nItemKind > 3) nItemKind = 0;
+        //    AddButton((Item.ITEM_KIND)i);
+        //    //nItemKind++;
+        //}
         //ResizeContent();
     }
 
