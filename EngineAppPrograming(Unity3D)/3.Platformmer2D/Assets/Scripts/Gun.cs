@@ -31,9 +31,9 @@ public class Gun : MonoBehaviour
 
                 if (target && superMode && superMode.isUes == false)
                 {
-                    master.Attack(target);
+                    //master.Attack(target);
 
-                    superMode.OnMode();
+                    //superMode.OnMode();
                 }
             }
             yield return new WaitForSeconds(Time);
@@ -106,18 +106,19 @@ public class Gun : MonoBehaviour
             int nLayer = 1 << LayerMask.NameToLayer("Monster");
             RaycastHit2D raycastHit = Physics2D.Raycast(vPos, dir, fDist, nLayer);
             Vector3 vEndDist = vPos + dir * fDist;
+
             if (raycastHit.collider)
             {
                 Debug.DrawLine(vPos, raycastHit.point, Color.red);
                 lineRenderer.SetPosition(0, vPos);
-                lineRenderer.SetPosition(0, raycastHit.point);
+                lineRenderer.SetPosition(1, raycastHit.point);
                 hitTarget = raycastHit.collider;
             }
             else
             {
                 Debug.DrawLine(vPos, vEndDist, Color.blue);
                 lineRenderer.SetPosition(0, vPos);
-                lineRenderer.SetPosition(0, vEndDist);
+                lineRenderer.SetPosition(1, vEndDist);
                 hitTarget = null;
             }
         }
@@ -140,6 +141,7 @@ public class Gun : MonoBehaviour
                     Shot(dynamic.dir);
                 break;
             case E_GUN_STATE.LASER_GUN:
+                
                 if (Input.GetKeyDown(KeyCode.X))
                 {
                     Shot(dynamic.dir);

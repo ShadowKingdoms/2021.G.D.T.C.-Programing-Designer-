@@ -136,16 +136,18 @@ public class Dynamic : MonoBehaviour
             transform.position += Vector3.down * Speed * Time.deltaTime;
     }
 
-    //private void OnGUI()
-    //{
-    //    GUI.Box(new Rect(0, 0, 100, 20), "Score:" + Score);
-    //    GUI.Box(new Rect(0, 20, 100, 20), "Lodder:" + isLodder);
-    //    GUI.Box(new Rect(0, 40, 100, 20), "Gravity:" + GetComponent<Rigidbody2D>().gravityScale);
-    //}
+    private void OnGUI()
+    {
+        GUI.Box(new Rect(0, 0, 100, 20), "Score:" + Score);
+        GUI.Box(new Rect(0, 20, 100, 20), "Jump:" + isJump);
+        //GUI.Box(new Rect(0, 20, 100, 20), "Lodder:" + isLodder);
+        //GUI.Box(new Rect(0, 40, 100, 20), "Gravity:" + GetComponent<Rigidbody2D>().gravityScale);
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        isJump = false;
+        //isJump = false;
+        //Debug.Log("OnCollisionEnter2D:"+collision.gameObject);
     }
 
     //private void OnCollisionExit2D(Collision2D collision)

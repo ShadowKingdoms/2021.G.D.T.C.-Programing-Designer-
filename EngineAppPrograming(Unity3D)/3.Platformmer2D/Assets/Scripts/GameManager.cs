@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     public float DeathZoneY = -1;
 
     public ItemIventory itemIventory;
+
+    public MobileController mobileController;
+
     public void EventEatItem(Item.ITEM_KIND item_kind)
     {
         itemIventory.SetIventory(item_kind);
@@ -65,6 +68,9 @@ public class GameManager : MonoBehaviour
     {
         if(cameraTracker.objTarget == null)
             cameraTracker.objTarget = responnerPlayer.objPlayer;
+
+        if (mobileController.dynamic == null && responnerPlayer.objPlayer)
+            mobileController.dynamic = responnerPlayer.objPlayer.GetComponent<Dynamic>();
 
         UpdateEagleRetrunPointCheck();
         UpdateState();

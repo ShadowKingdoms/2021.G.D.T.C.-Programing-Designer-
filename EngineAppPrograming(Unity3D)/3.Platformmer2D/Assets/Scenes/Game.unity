@@ -398,6 +398,7 @@ GameObject:
   m_Component:
   - component: {fileID: 118273571}
   - component: {fileID: 118273573}
+  - component: {fileID: 118273572}
   m_Layer: 5
   m_Name: MobileController
   m_TagString: Untagged
@@ -427,6 +428,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &118273572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 118273570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49d09f1d5473af44ab6c81fbc1375fe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dynamic: {fileID: 0}
+  horizontalAxis: Horizontal
+  verticalAxis: Vertical
+  jumpButton: Jump
+  aButton: A
 --- !u!222 &118273573
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -880,7 +898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39282cbb9dedc924d90701890b0b643c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strVer: Ver.0.00.02
+  strVer: Ver.0.00.03
   textVer: {fileID: 175222074}
   cameraTracker: {fileID: 339261007}
   responnerPlayer: {fileID: 87458608}
@@ -888,6 +906,7 @@ MonoBehaviour:
   responnerEagle: {fileID: 1422650459}
   DeathZoneY: -1
   itemIventory: {fileID: 244534228}
+  mobileController: {fileID: 118273572}
   listGUIScenes:
   - {fileID: 1546994275}
   - {fileID: 1267984942}
@@ -4014,7 +4033,7 @@ GameObject:
   - component: {fileID: 1412463740}
   - component: {fileID: 1412463739}
   - component: {fileID: 1412463738}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Lodder
   m_TagString: Lodder
   m_Icon: {fileID: 0}
