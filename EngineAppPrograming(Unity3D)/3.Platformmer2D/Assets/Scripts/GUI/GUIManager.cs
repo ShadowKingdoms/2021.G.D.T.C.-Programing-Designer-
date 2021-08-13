@@ -11,15 +11,11 @@ public class GUIManager : MonoBehaviour
 
     public GameObject objPopupLayer;
 
-    public Text textPlayerName;
-    public Text textPlayerLv;
-    public GUIStatusBar guiPlayerHp;
-    public GUIStatusBar guiPlayerMp;
-    public GUIStatusBar guiPlayerExp;
-
     public GUIIemIventory guiItemIventory;
 
     public GameManager gameManager;
+
+    public GUIPlayerInfo guiPlayerInfo;
 
     public void EventItemIventory()
     {
@@ -77,22 +73,26 @@ public class GUIManager : MonoBehaviour
             case E_GUI_STATE.GAMEOVER:
                 break;
             case E_GUI_STATE.PLAY:
-                UpdatePlayerStatus();
-
-                if (Input.GetKeyDown(KeyCode.I))
                 {
-                    EventItemIventory();
-                }
+                    GameObject objPlayer = gameManager.responnerPlayer.objPlayer;
 
-                if (objPopupLayer.activeSelf)
-                {
-                    if (gameManager.itemIventory.listItems.Count != guiItemIventory.listItemButtens.Count)
+                    if (objPlayer)
+                        guiPlayerInfo.UpdateInfo(objPlayer.GetComponent<Player>());
+
+                    if (Input.GetKeyDown(KeyCode.I))
                     {
-                        guiItemIventory.ClearIventory();
-                        guiItemIventory.SetIventory(gameManager.itemIventory);
+                        EventItemIventory();
+                    }
+
+                    if (objPopupLayer.activeSelf)
+                    {
+                        if (gameManager.itemIventory.listItems.Count != guiItemIventory.listItemButtens.Count)
+                        {
+                            guiItemIventory.ClearIventory();
+                            guiItemIventory.SetIventory(gameManager.itemIventory);
+                        }
                     }
                 }
-
                 break;
         }
     }
@@ -107,20 +107,6 @@ public class GUIManager : MonoBehaviour
     void Update()
     {
         UpdateState();
-    }
-
-    public void UpdatePlayerStatus()
-    {
-        if (gameManager.responnerPlayer.objPlayer)
-        {
-            Player player = gameManager.responnerPlayer.objPlayer.GetComponent<Player>();
-
-            textPlayerLv.text = string.Format("Lv.{0}", player.nLv);
-            textPlayerName.text = gameManager.responnerPlayer.objPlayer.name;
-            guiPlayerHp.SetValue(player.playerStatus.nHP, player.nMaxHP);
-            guiPlayerMp.SetValue(player.playerStatus.nMP, player.nMaxMP);
-            guiPlayerExp.SetValue(player.nExp, player.nMaxExp);
-        }
     }
 
     public void EventChageScene(int stateNumber)

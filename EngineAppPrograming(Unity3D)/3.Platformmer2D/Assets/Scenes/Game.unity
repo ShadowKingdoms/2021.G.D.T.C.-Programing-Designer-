@@ -405,7 +405,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &118273571
 RectTransform:
   m_ObjectHideFlags: 0
@@ -898,7 +898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39282cbb9dedc924d90701890b0b643c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strVer: Ver.0.00.04
+  strVer: Ver.0.00.05
   textVer: {fileID: 175222074}
   cameraTracker: {fileID: 339261007}
   responnerPlayer: {fileID: 87458608}
@@ -5129,7 +5129,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1781431135
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5282,13 +5282,9 @@ MonoBehaviour:
   - {fileID: 1781431134}
   curGUIState: 0
   objPopupLayer: {fileID: 914384964}
-  textPlayerName: {fileID: 1044187210}
-  textPlayerLv: {fileID: 536567820}
-  guiPlayerHp: {fileID: 1180865045}
-  guiPlayerMp: {fileID: 1159707747}
-  guiPlayerExp: {fileID: 1270409835}
   guiItemIventory: {fileID: 60011774}
   gameManager: {fileID: 244534226}
+  guiPlayerInfo: {fileID: 2056252361}
 --- !u!1 &1801037687
 GameObject:
   m_ObjectHideFlags: 0
@@ -5856,6 +5852,7 @@ GameObject:
   - component: {fileID: 2056252358}
   - component: {fileID: 2056252360}
   - component: {fileID: 2056252359}
+  - component: {fileID: 2056252361}
   m_Layer: 5
   m_Name: PlayerInfo
   m_TagString: Untagged
@@ -5924,6 +5921,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2056252357}
   m_CullTransparentMesh: 0
+--- !u!114 &2056252361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056252357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0188d8d543860274ea8ce95c8ff1b831, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textPlayerName: {fileID: 1044187210}
+  textPlayerLv: {fileID: 536567820}
+  guiPlayerHp: {fileID: 1180865045}
+  guiPlayerMp: {fileID: 1159707747}
+  guiPlayerExp: {fileID: 1270409835}
 --- !u!1 &2086227615 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5451512641011667738, guid: 206579e1990214c4897d1efadc509d13,
