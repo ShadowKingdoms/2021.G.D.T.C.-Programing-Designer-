@@ -898,7 +898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39282cbb9dedc924d90701890b0b643c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strVer: Ver.0.00.03
+  strVer: Ver.0.00.04
   textVer: {fileID: 175222074}
   cameraTracker: {fileID: 339261007}
   responnerPlayer: {fileID: 87458608}
@@ -907,19 +907,7 @@ MonoBehaviour:
   DeathZoneY: -1
   itemIventory: {fileID: 244534228}
   mobileController: {fileID: 118273572}
-  listGUIScenes:
-  - {fileID: 1546994275}
-  - {fileID: 1267984942}
-  - {fileID: 423436279}
-  - {fileID: 1781431134}
-  curGUIState: 0
-  objPopupLayer: {fileID: 914384964}
-  textPlayerName: {fileID: 1044187210}
-  textPlayerLv: {fileID: 536567820}
-  guiPlayerHp: {fileID: 1180865045}
-  guiPlayerMp: {fileID: 1159707747}
-  guiPlayerExp: {fileID: 1270409835}
-  guiItemIventory: {fileID: 60011774}
+  guiManager: {fileID: 1796326702}
 --- !u!4 &244534227
 Transform:
   m_ObjectHideFlags: 0
@@ -3542,7 +3530,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 244534226}
+      - m_Target: {fileID: 1796326702}
         m_MethodName: EventChageScene
         m_Mode: 3
         m_Arguments:
@@ -5182,8 +5170,9 @@ GameObject:
   - component: {fileID: 1796326700}
   - component: {fileID: 1796326699}
   - component: {fileID: 1796326698}
+  - component: {fileID: 1796326702}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: GUIManger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5274,6 +5263,32 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1796326702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796326697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 836e64508cbe2e944ab570d9901ef732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listGUIScenes:
+  - {fileID: 1546994275}
+  - {fileID: 1267984942}
+  - {fileID: 423436279}
+  - {fileID: 1781431134}
+  curGUIState: 0
+  objPopupLayer: {fileID: 914384964}
+  textPlayerName: {fileID: 1044187210}
+  textPlayerLv: {fileID: 536567820}
+  guiPlayerHp: {fileID: 1180865045}
+  guiPlayerMp: {fileID: 1159707747}
+  guiPlayerExp: {fileID: 1270409835}
+  guiItemIventory: {fileID: 60011774}
+  gameManager: {fileID: 244534226}
 --- !u!1 &1801037687
 GameObject:
   m_ObjectHideFlags: 0

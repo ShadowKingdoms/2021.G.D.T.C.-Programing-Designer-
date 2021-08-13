@@ -35,11 +35,11 @@ public class ItemIventory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //SetIventory(Item.ITEM_KIND.BULLET);
-        //SetIventory(Item.ITEM_KIND.LASER);
-        //SetIventory(Item.ITEM_KIND.RECOVERY);
-        ////SetIventory(Item.ITEM_KIND.GRENADE);
-        //SetIventory(Item.ITEM_KIND.SUPER_MODE);
+        SetIventory(Item.ITEM_KIND.BULLET);
+        SetIventory(Item.ITEM_KIND.LASER);
+        SetIventory(Item.ITEM_KIND.RECOVERY);
+        //SetIventory(Item.ITEM_KIND.GRENADE);
+        SetIventory(Item.ITEM_KIND.SUPER_MODE);
     }
 
     // Update is called once per frame

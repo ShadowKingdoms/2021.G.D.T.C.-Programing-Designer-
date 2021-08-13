@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GUIIemIventory">
+    <Position X="6.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AARAAAAAACAAgAAAAAAAAAAAAAAAAAwAAAAAAIAAQEA=</HashCode>
+      <FileName>Assets\Scripts\GUI\GUIIemIventory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GUIItemButton">
+    <Position X="4.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAABAAACAAAAAAAAAAAACQAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\GUI\GUIItemButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GUIStatusBar" Collapsed="true">
+    <Position X="9.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAKAAAgAEIAAAAAAAAAAAAAAAAAACAEAAAAA=</HashCode>
+      <FileName>Assets\Scripts\GUI\GUIStatusBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameManager">
+    <Position X="1.5" Y="0.5" Width="2.25" />
+    <NestedTypes>
+      <Enum Name="GameManager.E_GUI_STATE" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\GameManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AgQGACAAACgQCAsAAAAYCEAATUBQEACAAIIAFAACAYA=</HashCode>
+      <FileName>Assets\Scripts\GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ItemIventory">
+    <Position X="8.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AARAAAAAACABAAAAAAAAAAAAAAAAAAAAAECAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\ItemIventory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>
