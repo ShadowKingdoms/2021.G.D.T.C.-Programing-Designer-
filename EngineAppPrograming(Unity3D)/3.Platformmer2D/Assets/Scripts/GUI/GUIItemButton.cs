@@ -8,11 +8,22 @@ public class GUIItemButton : MonoBehaviour
     public Text textItemName;
     public Image imgItemSprite;
 
-    public void Set(Item.ITEM_KIND item_kind)
+    public bool Set(Item.ITEM_KIND item_kind)
     {
         Debug.Log("GUIItemButton.Set:" + item_kind);
-        Button button = this.GetComponent<Button>();
-        button.onClick.AddListener( ()=>OnClickEvent(item_kind) );
+
+        ItemData itemData = GameManager.GetInstance().itemDataManager.GetItemData(item_kind);
+
+        if (itemData != null)
+        {
+            textItemName.text = itemData.name;
+            Sprite sprite = Resources.Load<Sprite>("Image/" + itemData.icon);
+            if (sprite) imgItemSprite.sprite = sprite;
+            Button button = this.GetComponent<Button>();
+            button.onClick.AddListener(() => OnClickEvent(item_kind));
+            return true;
+        }
+        return false;
     }
 
     public void OnClickEvent(Item.ITEM_KIND item_kind)

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     public int Score;
-    public enum ITEM_KIND { SUPER_MODE, RECOVERY, LASER, BULLET, GRENADE  }
+    public enum ITEM_KIND { SUPER_MODE, RECOVERY, BULLET, LASER,  GRENADE, MAX  }
     public ITEM_KIND item_kind;
 
     public static bool Use(ITEM_KIND item_kind, GameObject obj)

@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public MobileController mobileController;
 
     public GUIManager guiManager;
+    public ItemDataManager itemDataManager;
 
     public void EventEatItem(Item.ITEM_KIND item_kind)
     {
@@ -62,6 +63,8 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         textVer.text = strVer;
+        //itemDataManager.InitItemData();
+        itemDataManager.InitItemDataAsset();
     }
 
     // Update is called once per frame

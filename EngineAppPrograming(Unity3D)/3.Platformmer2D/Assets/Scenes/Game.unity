@@ -879,6 +879,7 @@ GameObject:
   - component: {fileID: 244534227}
   - component: {fileID: 244534226}
   - component: {fileID: 244534228}
+  - component: {fileID: 244534229}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -898,7 +899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39282cbb9dedc924d90701890b0b643c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strVer: Ver.0.00.05
+  strVer: Ver.0.00.06
   textVer: {fileID: 175222074}
   cameraTracker: {fileID: 339261007}
   responnerPlayer: {fileID: 87458608}
@@ -908,6 +909,7 @@ MonoBehaviour:
   itemIventory: {fileID: 244534228}
   mobileController: {fileID: 118273572}
   guiManager: {fileID: 1796326702}
+  itemDataManager: {fileID: 244534229}
 --- !u!4 &244534227
 Transform:
   m_ObjectHideFlags: 0
@@ -935,6 +937,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listItems: 
+--- !u!114 &244534229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244534225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 277ef38851a50ee49b9c2f0d44107d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listItemDatas: []
 --- !u!1 &291087733
 GameObject:
   m_ObjectHideFlags: 0

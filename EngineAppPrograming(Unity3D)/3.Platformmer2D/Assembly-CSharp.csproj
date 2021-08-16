@@ -78,6 +78,7 @@
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Gun.cs" />
     <Compile Include="Assets\Scripts\Item.cs" />
+    <Compile Include="Assets\Scripts\ItemDataManager.cs" />
     <Compile Include="Assets\Scripts\ItemIventory.cs" />
     <Compile Include="Assets\Scripts\MobileController.cs" />
     <Compile Include="Assets\Scripts\Opossum.cs" />
@@ -86,9 +87,10 @@
     <Compile Include="Assets\Scripts\SuperMode.cs" />
     <Compile Include="Assets\Scripts\Timmer.cs" />
     <Compile Include="Assets\Sunnyland\artwork\Animatior\AnimationTest.cs" />
+    <None Include="Assets\ClassDiagram_GameManager.cd" />
     <None Include="Assets\Scripts\ClassDiagram1.cd" />
     <None Include="Assets\WorkList.txt" />
-    <None Include="Assets\ClassDiagram1.cd" />
+    <None Include="Assets\ClassDiagram_GUI.cd" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.0f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
