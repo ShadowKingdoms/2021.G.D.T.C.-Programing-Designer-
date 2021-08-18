@@ -22,24 +22,25 @@ public class GameManager : MonoBehaviour
 
     public GUIManager guiManager;
     public ItemDataManager itemDataManager;
+    public EffectDataManager effectDataManager;
 
-    public void EventEatItem(Item.ITEM_KIND item_kind)
+    public void EventEatItem(ItemData itemData)
     {
-        itemIventory.SetIventory(item_kind);
+        itemIventory.SetIventory(itemData);
     }
 
-    public void EventItemUse(Item.ITEM_KIND item_kind, GameObject obj)
+    public void EventItemUse(ItemData itemData, GameObject obj)
     {
-        Item.Use(item_kind, obj);
-        itemIventory.RemoveIventory(item_kind);
+        itemData.item_effect.Use(obj);
+        itemIventory.RemoveIventory(itemData);
     }
 
-    public void EventItemUsePlayer(Item.ITEM_KIND item_kind)
+    public void EventItemUsePlayer(ItemData itemData)
     {
         if (responnerPlayer.objPlayer)
         {
-            Item.Use(item_kind, responnerPlayer.objPlayer);
-            itemIventory.RemoveIventory(item_kind);
+            itemData.item_effect.Use(responnerPlayer.objPlayer);
+            itemIventory.RemoveIventory(itemData);
         }
     }
 
@@ -63,8 +64,9 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         textVer.text = strVer;
-        //itemDataManager.InitItemData();
-        itemDataManager.InitItemDataAsset();
+        //itemDataManager.InitItemData(effectDataManager);
+        effectDataManager.InitEffectData();
+        itemDataManager.InitItemDataAsset(effectDataManager);
     }
 
     // Update is called once per frame
