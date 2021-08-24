@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         instance = this;
-        textVer.text = strVer;
+        textVer.text = string.Format("Ver.{0}",Application.version);
         //itemDataManager.InitItemData(effectDataManager);
         effectDataManager.InitEffectData();
         itemDataManager.InitItemDataAsset(effectDataManager);

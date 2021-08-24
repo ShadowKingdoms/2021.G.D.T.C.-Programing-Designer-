@@ -1,8 +1,0 @@
-com/sbsgame/android/surfaveveiw/GameActivity.java
- com.sbsgame.android.surfaveveiw.GameActivity
-com/sbsgame/android/surfaveveiw/GameThread.java
- com.sbsgame.android.surfaveveiw.GameThread
-com/sbsgame/android/surfaveveiw/GameView.java
- com.sbsgame.android.surfaveveiw.GameView
-com/sbsgame/android/surfaveveiw/BuildConfig.java
- com.sbsgame.android.surfaveveiw.BuildConfig
