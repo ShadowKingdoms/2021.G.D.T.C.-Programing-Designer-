@@ -1,0 +1,7 @@
+com/sbsgame/android/gameativity/GameActivity.java
+ com.sbsgame.android.gameativity.GameActivity
+com/sbsgame/android/gameativity/GameView.java
+ com.sbsgame.android.gameativity.GameView
+ com.sbsgame.android.gameativity.GameView$1
+com/sbsgame/android/gameativity/BuildConfig.java
+ com.sbsgame.android.gameativity.BuildConfig
