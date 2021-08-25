@@ -7,11 +7,11 @@ public class ItemData //DTO
 {
     public string name;
     public string comment;
-    public IEffect item_effect;
+    public EffectFunc item_effect;
     public string icon;
     public string effect;
     public string obj;
-    public ItemData(string _name, string _conment, IEffect _item_effect, string _icon, string _effect, string _obj)
+    public ItemData(string _name, string _conment, EffectFunc _item_effect, string _icon, string _effect, string _obj)
     {
         name = _name;
         comment = _conment;
@@ -21,7 +21,7 @@ public class ItemData //DTO
         obj = _obj;
     }
 
-    public ItemData(string itemdata, EffectDataManager effectDataManager)
+    public ItemData(string itemdata, EffectDelegateManager effectDelegateManager)
     {
         string[] textItemDatas = itemdata.Split(',');
         Debug.Log("ItemData["+textItemDatas.Length+"]:"+ itemdata);
@@ -30,21 +30,21 @@ public class ItemData //DTO
             name = textItemDatas[1];
             comment = textItemDatas[2];
             int idx = int.Parse(textItemDatas[3]) - 1;
-            item_effect = effectDataManager.GetEffect(idx);
+            item_effect = effectDelegateManager.GetEffect(idx);
             icon = textItemDatas[4];
             effect = textItemDatas[5];
             obj = textItemDatas[6];
         }
     }
 
-    public ItemData(string[] textItemDatas, EffectDataManager effectDataManager)
+    public ItemData(string[] textItemDatas, EffectDelegateManager effectDelegateManager)
     {
         if (textItemDatas.Length >= (int)7)
         {
             name = textItemDatas[1];
             comment = textItemDatas[2];
             int idx = int.Parse(textItemDatas[3]) - 1;
-            item_effect = effectDataManager.GetEffect(idx);
+            item_effect = effectDelegateManager.GetEffect(idx);
             icon = textItemDatas[4];
             effect = textItemDatas[5];
             obj = textItemDatas[6];
@@ -79,18 +79,18 @@ public class ItemDataManager : MonoBehaviour
         return listItemDatas.Find(item => item.name == name);
     }
 
-    public void InitItemData(EffectDataManager effectDataManager)
+    public void InitItemData(EffectDelegateManager effectDelegateManager)
     {
         //리스트사용시 최대크기를 지정하고 사용하는 것이 좋다.
         listItemDatas = new List<ItemData>((int)E_ITEMDATA.MAX);
-        listItemDatas.Add(new ItemData("무적", "일정시간동안 데미지를 받지않는다.", effectDataManager.GetEffect(EffectDataManager.EffectFucntion.SUPER_MODE), "yellow_gem","supe_mode_eff","supermode_obj"));
-        listItemDatas.Add(new ItemData("체리", "체력을 모두 회복한다.", effectDataManager.GetEffect(EffectDataManager.EffectFucntion.RECOVERY), "cherry","eat_eff","recovery_cherry_obj"));
-        listItemDatas.Add(new ItemData("총알", "총알을 1개씩 발사한다.", effectDataManager.GetEffect(EffectDataManager.EffectFucntion.BULLET), "bullet","hit_bullet","bullet_obj"));
-        listItemDatas.Add(new ItemData("레이져", "직선상에 적에게 데미지를 준다.", effectDataManager.GetEffect(EffectDataManager.EffectFucntion.LASER), "laser_gem", "hit_laser", "laser_obj"));
-        listItemDatas.Add(new ItemData("수류탄", "수류탄을 던저 주변에 데미지를 준다", effectDataManager.GetEffect(EffectDataManager.EffectFucntion.GRENADE), "grenade", "explosion_eff", "grenade_obj"));
+        listItemDatas.Add(new ItemData("무적", "일정시간동안 데미지를 받지않는다.", effectDelegateManager.GetEffect(EffectDelegateManager.EffectFucntion.SUPER_MODE), "yellow_gem","supe_mode_eff","supermode_obj"));
+        listItemDatas.Add(new ItemData("체리", "체력을 모두 회복한다.", effectDelegateManager.GetEffect(EffectDelegateManager.EffectFucntion.RECOVERY), "cherry","eat_eff","recovery_cherry_obj"));
+        listItemDatas.Add(new ItemData("총알", "총알을 1개씩 발사한다.", effectDelegateManager.GetEffect(EffectDelegateManager.EffectFucntion.BULLET), "bullet","hit_bullet","bullet_obj"));
+        listItemDatas.Add(new ItemData("레이져", "직선상에 적에게 데미지를 준다.", effectDelegateManager.GetEffect(EffectDelegateManager.EffectFucntion.LASER), "laser_gem", "hit_laser", "laser_obj"));
+        listItemDatas.Add(new ItemData("수류탄", "수류탄을 던저 주변에 데미지를 준다", effectDelegateManager.GetEffect(EffectDelegateManager.EffectFucntion.GRENADE), "grenade", "explosion_eff", "grenade_obj"));
     }
 
-    public bool InitItemDataAsset(EffectDataManager effectDataManager)
+    public bool InitItemDataAsset(EffectDelegateManager effectDataManager)
     {
         TextAsset textAsset = Resources.Load<TextAsset>("Data/ItemData");
         if (textAsset)

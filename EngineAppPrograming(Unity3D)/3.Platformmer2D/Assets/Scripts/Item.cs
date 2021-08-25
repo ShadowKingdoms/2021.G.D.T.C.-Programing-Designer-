@@ -10,7 +10,7 @@ public class Item : MonoBehaviour
 
     public bool Use( GameObject obj)
     {
-        ItemData.item_effect.Use(obj);
+        ItemData.item_effect(obj);
         return true;
     }
 

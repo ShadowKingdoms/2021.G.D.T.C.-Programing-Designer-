@@ -31,7 +31,7 @@ void ArrayMain()
 	printf("\n");
 	int arrCopyScore[nSize];
 	//arrCopyScore = arrScores; //배열의이름은 포인터가 아니다.
-	printf("arrScore:%d/%d",arrCopyScore,arrScores);
+	printf("arrScore:%d/%d\n",arrCopyScore,arrScores);
 	for (int i = 0; i < nSize; i++)
 		arrCopyScore[i] = arrScores[i];
 	memcpy(arrCopyScore, arrScores, sizeof(arrScores));
@@ -50,5 +50,7 @@ void FunctionPtrMain()
 
 void main()
 {
-
+	//OpMain();
+	//PointerBasicMain();
+	FunctionPtrMain();
 }
