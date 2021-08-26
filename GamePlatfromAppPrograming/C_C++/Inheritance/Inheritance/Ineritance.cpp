@@ -5,8 +5,8 @@ using namespace std;
 class Effect
 {
 public:
-	Effect() { cout << typeid(*this).name() << endl; }
-	~Effect() { cout << typeid(*this).name() << endl; }
+	Effect() { cout << typeid(*this).name() << "[" << this <<"]" << endl; }
+	~Effect() { cout << "~"<<typeid(*this).name() << "[" << this << "]" << endl; }
 	void Use()
 	{
 		cout << typeid(*this).name() << "::" << "Use()" << endl;
@@ -16,8 +16,8 @@ public:
 class SuperModeEffect : public Effect
 {
 public:
-	SuperModeEffect() { cout << typeid(*this).name() << endl; }
-	~SuperModeEffect() { cout << typeid(*this).name() << endl; }
+	SuperModeEffect() { cout << typeid(*this).name() << "[" << this << "]" << endl; }
+	~SuperModeEffect() { cout <<"~"<<typeid(*this).name() << "[" << this << "]" << endl; }
 	void Use()
 	{
 		cout << typeid(*this).name() << "::" << "Use()" << endl;
@@ -27,8 +27,8 @@ public:
 class RecoveryEffect : public Effect
 {
 public:
-	RecoveryEffect() { cout << typeid(*this).name() << endl; }
-	~RecoveryEffect() { cout << typeid(*this).name() << endl; }
+	RecoveryEffect() { cout << typeid(*this).name() << "[" << this << "]" << endl; }
+	~RecoveryEffect() { cout <<"~"<<typeid(*this).name() << "[" << this << "]" << endl; }
 	void Use()
 	{
 		cout << typeid(*this).name() << "::" << "Use()" << endl;
@@ -41,8 +41,8 @@ class BulletEffect : public Effect
 {
 	Gun* m_pGun = NULL;
 public:
-	BulletEffect() { cout << typeid(*this).name() << endl; }
-	~BulletEffect() { cout << typeid(*this).name() << endl; }
+	BulletEffect() { cout << typeid(*this).name() << "[" << this << "]" << endl; }
+	~BulletEffect() { cout << "~"<< typeid(*this).name() << "[" << this << "]" << endl; }
 	void Init(Gun* pGun) { m_pGun = pGun; }
 	void Use()
 	{
@@ -54,8 +54,8 @@ class LaserEffect : public Effect
 {
 	Gun* m_pGun = NULL;
 public:
-	LaserEffect() { cout << typeid(*this).name() << endl; }
-	~LaserEffect() { cout << typeid(*this).name() << endl; }
+	LaserEffect() { cout << typeid(*this).name() << "[" << this << "]" << endl; }
+	~LaserEffect() { cout << "~" << typeid(*this).name() << "[" << this << "]" << endl; }
 	void Init(Gun* pGun) { m_pGun = pGun; }
 	void Use()
 	{
@@ -100,15 +100,20 @@ class ItemData
 	string m_strCommet;
 	Effect* m_pEffect;
 public:
+	ItemData() {};
 	ItemData(const char* name, const char* comment, Effect* pEffect)
 	{
 		m_strName = name;
 		m_strCommet = comment;
 		m_pEffect = pEffect;
 	}
+	Effect* GetEffect()
+	{
+		return m_pEffect;
+	}
 };
 
-class ItemDataMnager
+class ItemDataManager
 {
 	vector<ItemData> m_listItemData;
 public:
@@ -136,12 +141,48 @@ public:
 	enum E_ITEMDATA { SUPER_MODE, CHERRY, BULLET, LASER, GRENADE, MAX };
 };
 
+class Item
+{
+	ItemData* m_pItemData;
+	int m_nScore;
+public:
+	Item(ItemData* itemdata = NULL)
+	{
+		m_pItemData = itemdata;
+	}
+	void Use()
+	{
+		m_pItemData->GetEffect()->Use();
+	}
+};
+
 void ItemSimulationMain()
 {
+	EffectManager m_cEffectManager;
+	ItemDataManager m_cItemDataManager;
 
+	m_cEffectManager.Init();
+	m_cItemDataManager.Init(&m_cEffectManager);
+
+	ItemData itemDataSuperMode = m_cItemDataManager.GetItemData(ItemDataManager::SUPER_MODE);
+	Item cItemSuperMode(&itemDataSuperMode);
+	ItemData itemDataCherry = m_cItemDataManager.GetItemData(ItemDataManager::CHERRY);
+	Item cItemChery(&itemDataCherry);
+	ItemData itemDataBullet = m_cItemDataManager.GetItemData(ItemDataManager::BULLET);
+	Item cItemBullet(&itemDataBullet);
+	ItemData itemDataLaser = m_cItemDataManager.GetItemData(ItemDataManager::SUPER_MODE);
+	Item cItemLaser(&itemDataLaser);
+
+	cItemSuperMode.Use();
+	cItemChery.Use();
+	cItemBullet.Use();
+	cItemLaser.Use();
+
+	m_cItemDataManager.Release();
+	m_cEffectManager.Release();
 }
 
 void main()
 {
-
+	ItemSimulationMain();
 }
