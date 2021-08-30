@@ -63,9 +63,10 @@ int main()
 	Cookie cCookie(100, 20);
 	//MilkCookie cMilkCookie[10]{ MilkCookie(100,20,10), };
 	//쿠키틀을 10개 준비한다.
-	MilkCookie** pMilkCookies = new MilkCookie * [10];
+	int nSize = 3;
+	MilkCookie** pMilkCookies = new MilkCookie * [nSize];
 	//밀크쿠키의 제료를 준비하여 한개씩 틀에 채워넣는다.
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < nSize; i++)
 	{
 		pMilkCookies[i] = new MilkCookie(100, 20, 20);
 		delete pMilkCookies[i];

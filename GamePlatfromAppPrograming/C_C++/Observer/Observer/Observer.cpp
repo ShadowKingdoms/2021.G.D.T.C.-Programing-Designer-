@@ -1,5 +1,6 @@
 #include  <iostream>
 #include  <list>
+#include <vector>
 #include <string>
 #include <algorithm>
 class Unit; //클래스의 선언
@@ -53,44 +54,34 @@ public:
 	void Move(int x, int y);
 	void Attack(int x, int y);
 };
-
 Marin::Marin()
 {
 }
-
 Marin::~Marin()
 {
 }
-
 void Marin::Move(int x, int y)
 {
 	cout << typeid(*this).name() << "::Move(" << x << "," << y << ")" << endl;
 }
-
 void Marin::Attack(int x, int y)
 {
 	cout << typeid(*this).name() << "::Attack(" << x << "," << y << ")" << endl;
 }
-
 Medic::Medic()
 {
 }
-
 Medic::~Medic()
 {
 }
-
 void Medic::Move(int x, int y)
 {
 	cout << typeid(*this).name() << "::Move(" << x << "," << y << ")" << endl;
 }
-
 void Medic::Attack(int x, int y)
 {
 	Move(x, y);
 }
-
-
 void Commonder::Move(int x, int y)
 {
 	list<Unit*>::iterator it = listUnitCollection.begin();
@@ -100,7 +91,6 @@ void Commonder::Move(int x, int y)
 		pUnit->Move(x, y);
 	}
 }
-
 void Commonder::Attack(int x, int y)
 {
 	list<Unit*>::iterator it = listUnitCollection.begin();
