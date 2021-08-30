@@ -130,9 +130,9 @@ public:
 	{
 		m_listItemData.resize(E_ITEMDATA::MAX);
 		m_listItemData[0] = ItemData("무적", "일정시간동안 데미지를 받지않는다.", pEffectManager->GetEffect(EffectManager::SUPER_MODE));
-		m_listItemData[1] = ItemData("체리", "체력을 모두 회복한다.", pEffectManager->GetEffect(EffectManager::SUPER_MODE));
-		m_listItemData[2] = ItemData("총알", "총알을 1개씩 발사한다.", pEffectManager->GetEffect(EffectManager::SUPER_MODE));
-		m_listItemData[3] = ItemData("레이저", "직선상에 적에게 일정주기마다 데미지를 준다.", pEffectManager->GetEffect(EffectManager::SUPER_MODE));
+		m_listItemData[1] = ItemData("체리", "체력을 모두 회복한다.", pEffectManager->GetEffect(EffectManager::RECOVERY));
+		m_listItemData[2] = ItemData("총알", "총알을 1개씩 발사한다.", pEffectManager->GetEffect(EffectManager::BULLET));
+		m_listItemData[3] = ItemData("레이저", "직선상에 적에게 일정주기마다 데미지를 준다.", pEffectManager->GetEffect(EffectManager::LASER));
 	}
 	void Release()
 	{
@@ -146,6 +146,10 @@ class Item
 	ItemData* m_pItemData;
 	int m_nScore;
 public:
+	ItemData* GetEffect()
+	{
+		return m_pItemData;
+	}
 	Item(ItemData* itemdata = NULL)
 	{
 		m_pItemData = itemdata;
@@ -177,6 +181,12 @@ void ItemSimulationMain()
 	cItemChery.Use();
 	cItemBullet.Use();
 	cItemLaser.Use();
+
+	cout << "####### EffectParent/Child #######" << endl;
+	Effect* pEffectParent =  cItemBullet.GetEffect()->GetEffect();
+	pEffectParent->Use();
+	SuperModeEffect* pEffectChild = (SuperModeEffect*)pEffectParent;
+	pEffectChild->Use();
 
 	m_cItemDataManager.Release();
 	m_cEffectManager.Release();

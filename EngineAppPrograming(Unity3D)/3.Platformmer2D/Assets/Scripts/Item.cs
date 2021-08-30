@@ -5,7 +5,6 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     public int Score;
-
     ItemData ItemData;
 
     public bool Use( GameObject obj)

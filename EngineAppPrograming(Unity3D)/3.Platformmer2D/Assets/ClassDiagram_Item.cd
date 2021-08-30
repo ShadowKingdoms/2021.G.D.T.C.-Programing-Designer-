@@ -16,6 +16,9 @@
   </Class>
   <Class Name="ItemDataManager">
     <Position X="2.75" Y="3.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
     <NestedTypes>
       <Enum Name="ItemDataManager.E_ITEMDATA" Collapsed="true">
         <TypeIdentifier>
