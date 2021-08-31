@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class GUIItemButton : MonoBehaviour
+public class GUIItemButton : MonoBehaviour , IPointerDownHandler, IPointerUpHandler
 {
     public Text textItemName;
     public Image imgItemSprite;
@@ -40,5 +41,15 @@ public class GUIItemButton : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    void IPointerUpHandler.OnPointerUp(PointerEventData eventDatdpa)
+    {
+        throw new System.NotImplementedException();
     }
 }

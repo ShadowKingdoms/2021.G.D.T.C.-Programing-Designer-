@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\Eagle.cs" />
     <Compile Include="Assets\Scripts\EffectDataManager.cs" />
     <Compile Include="Assets\Scripts\EffectDelegateManager.cs" />
+    <Compile Include="Assets\Scripts\GUI\GUIComment.cs" />
     <Compile Include="Assets\Scripts\GUI\GUIIemIventory.cs" />
     <Compile Include="Assets\Scripts\GUI\GUIItemButton.cs" />
     <Compile Include="Assets\Scripts\GUI\GUIManager.cs" />

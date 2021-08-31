@@ -1,117 +1,18 @@
-#include  <iostream>
-#include  <list>
+#include "Commender.h"
 #include <vector>
-#include <string>
-#include <algorithm>
-class Unit; //클래스의 선언
-
-using namespace std;
-
-//추상클래스
-class Unit //클래스의 정의
-{
-	int x;
-	int y;
-public:
-	virtual void Move(int x, int y) = 0;
-	virtual void Attack(int x, int y) = 0;
-};
-
-class Marin : public Unit
-{
-public:
-	Marin();
-	~Marin();
-	void Move(int x, int y) override;
-	void Attack(int, int y) override;
-private:
-
-};
-
-class Medic : public Unit
-{
-public:
-	Medic();
-	~Medic();
-	void Move(int x, int y) override;
-	void Attack(int, int y) override;
-private:
-
-};
-
-class Commonder
-{
-	list<Unit*> listUnitCollection;
-public:
-	void SelectUnit(Unit* pUnit)
-	{
-		listUnitCollection.push_back(pUnit);
-	}
-	void Deselect(Unit* pUnit)
-	{
-		listUnitCollection.remove(pUnit);
-	}
-	void Move(int x, int y);
-	void Attack(int x, int y);
-};
-Marin::Marin()
-{
-}
-Marin::~Marin()
-{
-}
-void Marin::Move(int x, int y)
-{
-	cout << typeid(*this).name() << "::Move(" << x << "," << y << ")" << endl;
-}
-void Marin::Attack(int x, int y)
-{
-	cout << typeid(*this).name() << "::Attack(" << x << "," << y << ")" << endl;
-}
-Medic::Medic()
-{
-}
-Medic::~Medic()
-{
-}
-void Medic::Move(int x, int y)
-{
-	cout << typeid(*this).name() << "::Move(" << x << "," << y << ")" << endl;
-}
-void Medic::Attack(int x, int y)
-{
-	Move(x, y);
-}
-void Commonder::Move(int x, int y)
-{
-	list<Unit*>::iterator it = listUnitCollection.begin();
-	for (; it != listUnitCollection.end(); it++)
-	{
-		Unit* pUnit = *it;
-		pUnit->Move(x, y);
-	}
-}
-void Commonder::Attack(int x, int y)
-{
-	list<Unit*>::iterator it = listUnitCollection.begin();
-	for (; it != listUnitCollection.end(); it++)
-	{
-		Unit* pUnit = *it;
-		pUnit->Move(x, y);
-	}
-}
 
 void CommederMain()
 {
+	//Unit cUnit; //추상클래스는 객체화 할 수 없다.
 	Commonder cCommonder;
 	vector<Unit*> vecUnits;
 
-	vecUnits.push_back(new Marin());
-	vecUnits.push_back(new Marin());
-	vecUnits.push_back(new Marin());
-	vecUnits.push_back(new Marin());
-	vecUnits.push_back(new Medic());
-	vecUnits.push_back(new Medic());
+	vecUnits.push_back(new Marin());//0
+	vecUnits.push_back(new Marin());//1
+	vecUnits.push_back(new Marin());//2
+	vecUnits.push_back(new Marin());//3
+	vecUnits.push_back(new Medic());//4
+	vecUnits.push_back(new Medic());//5
 
 	for (int i = 0; i < vecUnits.size(); i++)
 		cCommonder.SelectUnit(vecUnits[i]);
