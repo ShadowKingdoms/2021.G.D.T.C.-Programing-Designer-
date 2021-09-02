@@ -17,6 +17,16 @@ public class GUIManager : MonoBehaviour
 
     public GUIPlayerInfo guiPlayerInfo;
 
+    public static GUIManager instance;
+
+    public static GUIManager GetInstance()
+    {
+        if (instance == null)
+            Debug.LogError("GUIManager.GetInstance() is null!!!");
+
+        return instance;
+    }
+
     public void EventItemIventory()
     {
         if (objPopupLayer.activeSelf)
@@ -100,6 +110,7 @@ public class GUIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
         SetGUIScene(curGUIState);
     }
 

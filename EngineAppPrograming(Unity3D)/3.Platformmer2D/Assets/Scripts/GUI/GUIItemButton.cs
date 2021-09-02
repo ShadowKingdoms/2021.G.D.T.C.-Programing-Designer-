@@ -8,11 +8,12 @@ public class GUIItemButton : MonoBehaviour , IPointerDownHandler, IPointerUpHand
 {
     public Text textItemName;
     public Image imgItemSprite;
+    ItemData cItemData;
 
     public bool Set(ItemData itemData)
     {
         Debug.Log("GUIItemButton.Set:" + itemData);
-
+        cItemData = itemData;
         if (itemData != null)
         {
             textItemName.text = itemData.name;
@@ -40,16 +41,18 @@ public class GUIItemButton : MonoBehaviour , IPointerDownHandler, IPointerUpHand
     // Update is called once per frame
     void Update()
     {
-        
+        //Set(GameManager.GetInstance().itemDataManager.GetItemData(ItemDataManager.E_ITEMDATA.BULLET));
     }
 
-    void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
+    public void OnPointerDown(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        GUIManager.GetInstance().guiItemIventory.guiComment.OpenComment(cItemData);
+        Debug.Log("OnPointerDown");
     }
 
-    void IPointerUpHandler.OnPointerUp(PointerEventData eventDatdpa)
+    public void OnPointerUp(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        GUIManager.GetInstance().guiItemIventory.guiComment.CloseComment();
+        Debug.Log("OnPointerUp");
     }
 }

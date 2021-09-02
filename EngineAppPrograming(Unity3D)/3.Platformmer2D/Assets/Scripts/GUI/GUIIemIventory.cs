@@ -7,6 +7,7 @@ public class GUIIemIventory : MonoBehaviour
 {
     public List<GUIItemButton> listItemButtens;
     public RectTransform rectContent;
+    public GUIComment guiComment;
 
     public void AddButton(ItemData itemData, GameObject prefab) //기존에 생성된 프리팹정보를 이용하여 초기화
     {
