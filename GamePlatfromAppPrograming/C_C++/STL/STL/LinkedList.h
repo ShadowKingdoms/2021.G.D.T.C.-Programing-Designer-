@@ -1,77 +1,136 @@
 #pragma once
+#include <iostream>
+using namespace std;
 
 namespace demo
 {
 	template <typename Type>
 	class list
 	{
-		class iterator* pBegin;
-		class iterator* pEnd;
+		int nSize = 0;
 	public :
 		class iterator
 		{
-			Type data;
 		public:
-			iterator(Type data)
+			Type data;
+			iterator* pPre;
+			iterator* pNext;
+			iterator(Type data = 0)
 			{
 				this->data = data;
+				pNext = NULL;
+				pPre = NULL;
 			}
-			iterator* operator++()
+			Type operator=(Type data)
 			{
-
+				return data;
 			}
-			iterator* operator--()
+			/*bool operator==(iterator& it)
 			{
-
+				return data == it.data;
 			}
-			iterator* operator++(int)
+			bool operator!=(iterator& it)
 			{
-
+				return  data != it.data;;
+			}*/
+			Type operator*()
+			{
+				return data;
 			}
-			iterator* operator--(int)
+			friend ostream& operator<<(ostream& os, iterator& it)
 			{
-
+				os << it.data;
+				return os;
 			}
 		};
 	public:
 		list(int size = 0)
 		{
-
-		}
-		void resize(int size)
-		{
-
+			for (int i = 0; i < size; i++)
+				push_back(0);
+			nSize = size;
 		}
 		int size()
 		{
-			return 0;
+			return nSize;
 		}
-		public iterator* begin()
+		void resize(int size)
+		{
+			for (int i = nSize; i < size; i++)
+				push_back(0);
+			nSize = size;
+		}
+		iterator* begin()
 		{
 			return pBegin;
 		}
-		public iterator* end()
+		iterator* end()
 		{
 			return pEnd;
 		}
-		public void push_back(Type data)
+		void push_back(Type data)
 		{
-
+			iterator* pTemp = new iterator(data);
+			if(pEnd) pEnd->pNext = pTemp;
+			pTemp->pPre = pEnd;
+			pEnd = pTemp;
+			if (pBegin == NULL) pBegin = pEnd;
 		}
-		public iterator* insert(iterator& it, Type insert)
+		iterator* insert(iterator* it, Type insert)
 		{
-			iterator* pInsert;
+			iterator* pInsert = new iterator(insert);
+			pInsert->pNext = it->pNext;
+			pInsert->pPre = it->pPre;
 			return pInsert;
 		}
-		public iterator* eraser(iterator& it)
+		iterator* erase(iterator* it)
 		{
-
+			iterator* pNext = it->pNext;
+			iterator* pPre = it->pPre;
+			pNext->pPre = pPre;
+			pPre->pNext = pNext;
+			delete it;
+			return NULL;
 		}
 		void pop_back()
 		{
-
+			iterator* pDel = pEnd;
+			iterator* pPre = pDel->pPre;
+			pEnd = pPre;
+			pPre->pNext = NULL;
+			delete pDel;
 		}
-	public:
-		
+	private:
+		iterator* pBegin;
+		iterator* pEnd;
 	};
+
+	void ListMain()
+	{
+		list<int> container(1);
+		list<int>::iterator* it = container.begin();//반복자
+		*it = 10;
+		for (it = container.begin(); it != container.end(); it++)
+			cout << *it << ",";
+		cout << endl;
+		container.resize(3);
+		for (it = container.begin(); it != container.end(); it++)
+			cout << *it << ",";
+		cout << endl;
+		container.push_back(99);
+		it = container.begin();//반복자
+		it++; it++;//연결리스트이므로 순서대로 원하는 값에 접근해야한다.
+		container.insert(it, 88);
+		for (it = container.begin(); it != container.end(); it++)
+			cout << *it << ",";
+		cout << endl;
+		it = container.end();
+		it--; it--;
+		container.erase(it);
+		container.pop_back();
+		for (it = container.begin(); it != container.end(); it++)
+			cout << *it << ",";
+		cout << endl;
+	}
+
 }

@@ -3,7 +3,7 @@
 #include <list>
 //using namespace std;
 #include"DynamicArray.h"
-//#include"LinkedList.h"
+#include"LinkedList.h"
 //using namespace demo;
 using namespace std;
 
@@ -71,7 +71,8 @@ void ListMain()
 void main()
 {
 	//VectorMain();
-	demo::VectorSampleTestMain();
+	//demo::VectorSampleTestMain();
 	//demo::VectorMain();
+	demo::ListMain();
 	//ListMain();
 }
