@@ -21,9 +21,8 @@ SNode* FindNodeData(SNode* pStart, int data); //해당 데이터를 가진 노드를 찾는다
 SNode* InsertNodeData(SNode* pStart, int data, int insert); //해당 데이터를 가진 노드 뒤에 노드를 추가한다.
 void DeleteNodeData(SNode* pStart, int del); //해당데이터를 가진 노드를 삭제한다.
 void PrintLinkedList(SNode* pStart); //노드를 순회하며 끝날때까지 출력한다.
-void DeleteLinkedList(SNode* pStart); //노드를 순회하며 모든데이터를 삭제한다.
+void DeleteLinkedList(SNode* &pStart); //노드를 순회하며 모든데이터를 삭제한다.
 void ReverseLinkedList(SNode* &pStart); //
-//void ReverseLinkedList(SNode** pStart); //
 
 									   //연결리스트 동적으로 입력받기.(동적할당 설명용)
 void InputAdd();
@@ -167,6 +166,7 @@ void DeleteLinkedList(SNode* &pStart)
 
 	while (pNode)
 	{
+		pDel = pNode;
 		pNode = pNode->pNext;
 		delete pDel;
 	}
