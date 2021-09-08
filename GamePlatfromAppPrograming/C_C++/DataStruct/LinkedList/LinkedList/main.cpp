@@ -22,7 +22,8 @@ SNode* InsertNodeData(SNode* pStart, int data, int insert); //해당 데이터를 가진
 void DeleteNodeData(SNode* pStart, int del); //해당데이터를 가진 노드를 삭제한다.
 void PrintLinkedList(SNode* pStart); //노드를 순회하며 끝날때까지 출력한다.
 void DeleteLinkedList(SNode* pStart); //노드를 순회하며 모든데이터를 삭제한다.
-void ReverseLinkedList(SNode* pStart); //
+void ReverseLinkedList(SNode* &pStart); //
+//void ReverseLinkedList(SNode** pStart); //
 
 									   //연결리스트 동적으로 입력받기.(동적할당 설명용)
 void InputAdd();
@@ -42,7 +43,7 @@ void main()
 	//노드 추가 테스트
 	pEnd = CreateNode(pEnd, 10);
 	pBegin = pEnd; //마지막 노드를 알아야 검색이 가능하므로 저장해둔다.
-
+	//pBegin->pNext = pEnd; //이전노드와 연결은 추가함수 내에서 수행되어야한다.
 	pEnd = CreateNode(pEnd, 20);
 	pEnd = CreateNode(pEnd, 30);
 	pEnd = CreateNode(pEnd, 40);
@@ -54,7 +55,7 @@ void main()
 	if (pFind != NULL)
 		printf("Find:%d\n", pFind->nData);
 
-	pEnd = InsertNodeData(pBegin, 30, 60);//노드 삽입
+	InsertNodeData(pBegin, 30, 60);//노드 삽입
 
 	PrintLinkedList(pBegin);
 
@@ -74,13 +75,20 @@ SNode* CreateNode(SNode* pNode, int data)
 	pTemp = new SNode();
 	pTemp->nData = data;
 	if(pNode != NULL) pNode->pNext = pTemp;
-	//pTemp->pNext = pNode;
 	return  pTemp;
 }
 
 SNode* FindNodeData(SNode* pStart, int data)
 {
 	SNode* pNode = pStart;
+
+	while (pNode)
+	{
+		if (pNode->nData == data)
+			break;
+		else
+			pNode = pNode->pNext;
+	}
 
 	return pNode;
 }
@@ -92,7 +100,15 @@ SNode* InsertNodeData(SNode* pStart, int data, int insert)
 
 	pNode = FindNodeData(pStart, data);
 
-	return pNode;
+	if (pNode)
+	{
+		pInsert = new SNode();
+		pInsert->nData = insert;
+		pInsert->pNext = pNode->pNext;
+		pNode->pNext = pInsert;
+	}
+
+	return pInsert;
 }
 
 void DeleteNodeData(SNode* pStart, int del)
@@ -100,7 +116,20 @@ void DeleteNodeData(SNode* pStart, int del)
 	SNode* pPre = NULL;
 	SNode* pNode = pStart;
 
-
+	while (pNode)
+	{
+		if (pNode->nData == del)
+		{
+			pPre->pNext = pNode->pNext;
+			delete pNode;
+		}
+		else
+		{
+			pPre = pNode;
+			pNode = pNode->pNext;
+		}
+	}
+	
 }
 
 void PrintLinkedList(SNode* pStart)
@@ -118,10 +147,30 @@ void PrintLinkedList(SNode* pStart)
 	printf("\n");
 }
 
-void DeleteLinkedList(SNode* pStart)
+//void DeleteLinkedList(SNode** pStart)
+//{
+//	SNode* pNode = *pStart;
+//	SNode* pDel = NULL;
+//
+//	while (pNode)
+//	{
+//		pNode = pNode->pNext;
+//		delete pDel;
+//	}
+//	*pStart = NULL;
+//}
+
+void DeleteLinkedList(SNode* &pStart)
 {
 	SNode* pNode = pStart;
 	SNode* pDel = NULL;
+
+	while (pNode)
+	{
+		pNode = pNode->pNext;
+		delete pDel;
+	}
+	pStart = NULL;
 }
 
 void InputAdd()
