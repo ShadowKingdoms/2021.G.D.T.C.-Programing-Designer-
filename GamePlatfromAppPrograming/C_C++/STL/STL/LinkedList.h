@@ -25,6 +25,14 @@ namespace demo
 			{
 				return data;
 			}
+			iterator* Next()
+			{
+				return pNext;
+			}
+			iterator* Prev()
+			{
+				return pPre;
+			}
 			/*bool operator==(iterator& it)
 			{
 				return data == it.data;
@@ -49,6 +57,11 @@ namespace demo
 			for (int i = 0; i < size; i++)
 				push_back(0);
 			nSize = size;
+			pEnd = new iterator(-1);
+		}
+		~list()
+		{
+			if (pEnd) delete pEnd;
 		}
 		int size()
 		{
@@ -71,17 +84,27 @@ namespace demo
 		void push_back(Type data)
 		{
 			iterator* pTemp = new iterator(data);
-			if(pEnd) pEnd->pNext = pTemp;
-			pTemp->pPre = pEnd;
-			pEnd = pTemp;
-			if (pBegin == NULL) pBegin = pEnd;
+			iterator* pPre = pEnd->pPre;
+			pTemp->pPre = pPre;
+			pTemp->pNext = pEnd;
+			pEnd->pPre = pTemp;
+			if(pPre) pPre->pNext = pTemp;
+			if (pBegin == NULL) pBegin = pTemp;
 		}
-		iterator* insert(iterator* it, Type insert)
+		iterator* insert(iterator* pFind, Type insert)
 		{
-			iterator* pInsert = new iterator(insert);
-			pInsert->pNext = it->pNext;
-			pInsert->pPre = it->pPre;
-			return pInsert;
+			if (pFind != pEnd)
+			{
+				iterator* pInsert = new iterator(insert);
+				iterator* pNext = pFind->pNext;
+				iterator* pPre = pFind->pPre;
+				pFind->pNext = pInsert;
+				pNext->pPre = pInsert;
+				pInsert->pPre = pFind;
+				pInsert->pNext = pNext;
+				return pInsert;
+			}
+			return pEnd;
 		}
 		iterator* erase(iterator* it)
 		{
@@ -92,18 +115,66 @@ namespace demo
 			delete it;
 			return NULL;
 		}
+		void clear()
+		{
+			iterator* pNode = pBegin;
+			while (pNode != pEnd)
+			{
+				iterator* pNext = pNode->pNext;
+				iterator* pPre = pNode->pPre;
+				pNode = pNext;
+				delete pPre;
+			}
+			pBegin = NULL;
+		}
 		void pop_back()
 		{
-			iterator* pDel = pEnd;
+			iterator* pDel = pEnd->pPre;
 			iterator* pPre = pDel->pPre;
-			pEnd = pPre;
-			pPre->pNext = NULL;
+			iterator* pNext = pDel->pNext;
+			pEnd->pPre = pPre;
+			pPre->pNext = pNext;
 			delete pDel;
 		}
 	private:
 		iterator* pBegin;
 		iterator* pEnd;
 	};
+
+	void ListTestMain()
+	{
+		list<int> container;
+		container.push_back(10);
+		container.push_back(20);
+		container.push_back(30);
+		container.push_back(40);
+		container.push_back(50);
+		
+		list<int>::iterator* it = container.begin();//¹Ýº¹ÀÚ
+		for (it = container.begin(); it != container.end(); it = it->Next())
+			cout << it->data << ",";
+		cout << endl;
+		list<int>::iterator* pFind = container.begin();//10
+		pFind = pFind->pNext;//20
+		pFind = pFind->pNext;//30
+		list<int>::iterator* pInsert = container.insert(pFind, 60);
+		for (it = container.begin(); it != container.end(); it = it->Next())
+			cout << it->data << ",";
+		cout << endl;
+		container.erase(pInsert);
+		for (it = container.begin(); it != container.end(); it = it->Next())
+			cout << it->data << ",";
+		cout << endl;
+		container.pop_back();
+		container.push_back(70);
+		for (it = container.begin(); it != container.end(); it = it->Next())
+			cout << it->data << ",";
+		cout << endl;
+		container.clear();
+		for (it = container.begin(); it != container.end(); it = it->Next())
+			cout << it->data << ",";
+		cout << endl;
+	}
 
 	void ListMain()
 	{
@@ -131,6 +202,7 @@ namespace demo
 		for (it = container.begin(); it != container.end(); it++)
 			cout << *it << ",";
 		cout << endl;
+		container.clear();
 	}
 
 }

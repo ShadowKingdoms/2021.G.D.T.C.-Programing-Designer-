@@ -73,6 +73,7 @@ void main()
 	//VectorMain();
 	//demo::VectorSampleTestMain();
 	//demo::VectorMain();
-	demo::ListMain();
+	//demo::ListMain();
+	demo::ListTestMain();
 	//ListMain();
 }
