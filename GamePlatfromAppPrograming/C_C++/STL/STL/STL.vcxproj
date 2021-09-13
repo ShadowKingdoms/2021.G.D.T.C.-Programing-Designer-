@@ -139,6 +139,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="QueueList.h" />
+    <ClCompile Include="StackArray.cpp" />
+    <ClCompile Include="StackArray.h" />
     <ClCompile Include="STL.cpp" />
   </ItemGroup>
   <ItemGroup>

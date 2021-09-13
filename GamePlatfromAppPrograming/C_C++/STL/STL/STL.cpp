@@ -8,6 +8,8 @@
 //using namespace std;
 #include"DynamicArray.h"
 #include"LinkedList.h"
+//#include"QueueList.h"
+#include"StackArray.h"
 //using namespace demo;
 using namespace std;
 
@@ -128,6 +130,7 @@ void main()
 	//demo::ListMain();
 	//demo::ListTestMain();
 	//ListMain();
-	QuequeMain();
-	StackMain();
+	//QuequeMain();
+	//StackMain();
+	demo::StackMain();
 }
