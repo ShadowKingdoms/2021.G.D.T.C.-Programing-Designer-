@@ -1,6 +1,10 @@
 #include <iostream>
 #include <vector>
 #include <list>
+#include <queue>
+#include <stack>
+#include <string>
+
 //using namespace std;
 #include"DynamicArray.h"
 #include"LinkedList.h"
@@ -67,6 +71,54 @@ void ListMain()
 		cout << *it << ",";
 	cout << endl;
 }
+//큐: 후입선출
+//문자열을 순서대로 넣고, 순서대로 큐에 내용을 넣는다.
+void QuequeMain()
+{
+	char strName[] = "GDTC2021-1";
+	queue<char> queString;
+	cout << "Origin:" << strName << endl;
+	char* pStr = strName;
+	while (*pStr != '\0')
+	{
+		char cData = *pStr;
+		queString.push(cData);
+		cout << cData << endl;
+		pStr++;
+	}
+	pStr = strName;
+	while (!queString.empty())
+	{
+		*pStr = queString.front();
+		queString.pop();
+		pStr++;
+	}
+	cout << "Result:"<< strName << endl;
+}
+//스택: 후입후출
+//문자열을 차례로 넣고, 뒤에서 꺼낸다.(뒤집기)
+void StackMain()
+{
+	char strName[] = "GDTC2021-1";
+	stack<char> queString;
+	cout << "Origin:" << strName << endl;
+	char* pStr = strName;
+	while (*pStr != '\0')
+	{
+		char cData = *pStr;
+		queString.push(cData);
+		cout << cData << endl;
+		pStr++;
+	}
+	pStr = strName;
+	while (!queString.empty())
+	{
+		*pStr = queString.top();
+		queString.pop();
+		pStr++;
+	}
+	cout << "Result:" << strName << endl;
+}
 
 void main()
 {
@@ -74,6 +126,8 @@ void main()
 	//demo::VectorSampleTestMain();
 	//demo::VectorMain();
 	//demo::ListMain();
-	demo::ListTestMain();
+	//demo::ListTestMain();
 	//ListMain();
+	QuequeMain();
+	StackMain();
 }
