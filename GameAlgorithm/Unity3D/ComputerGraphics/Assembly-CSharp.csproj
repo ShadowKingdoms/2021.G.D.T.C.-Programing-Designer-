@@ -64,6 +64,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scprits\BillBoard.cs" />
+    <Compile Include="Assets\Scprits\Camera.cs" />
     <Compile Include="Assets\Scprits\MeshInfo.cs" />
     <Compile Include="Assets\Scprits\Refleact.cs" />
     <Compile Include="Assets\Scprits\ReflectBall.cs" />
