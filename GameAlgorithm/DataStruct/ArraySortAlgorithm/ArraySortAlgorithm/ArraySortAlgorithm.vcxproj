@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{a7ceb1f9-0c8b-4efb-8f54-c08533f94ab0}</ProjectGuid>
-    <RootNamespace>STL</RootNamespace>
+    <ProjectGuid>{9f625632-7829-47e7-852a-7be7ed69b077}</ProjectGuid>
+    <RootNamespace>ArraySortAlgorithm</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,15 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="QuequeList.cpp" />
-    <ClCompile Include="QueueList.h" />
-    <ClCompile Include="StackArray.cpp" />
-    <ClCompile Include="StackArray.h" />
-    <ClCompile Include="STL.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="DynamicArray.h" />
-    <ClInclude Include="LinkedList.h" />
+    <ClCompile Include="ArraySortAlgrithm.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

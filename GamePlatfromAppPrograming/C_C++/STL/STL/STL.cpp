@@ -9,7 +9,8 @@
 #include"DynamicArray.h"
 #include"LinkedList.h"
 //#include"QueueList.h"
-#include"StackArray.h"
+//#include"StackArray.h"
+#include"QueueList.h"
 //using namespace demo;
 using namespace std;
 
@@ -132,5 +133,6 @@ void main()
 	//ListMain();
 	//QuequeMain();
 	//StackMain();
-	demo::StackMain();
+	//demo::StackMain();
+	demo::QuequeMain();
 }

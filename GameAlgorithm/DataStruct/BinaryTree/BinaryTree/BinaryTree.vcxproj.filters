@@ -15,28 +15,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="STL.cpp">
+    <ClCompile Include="BinaryTree.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="QueueList.h">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="StackArray.h">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="StackArray.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="QuequeList.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="LinkedList.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="DynamicArray.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
