@@ -45,7 +45,50 @@ void Traverse(SNode* pNode)
 	Traverse(pNode->pLeft);
 	//printf("%d\n", pNode->nData); //중위
 	Traverse(pNode->pRight);
-	//printf("%d\n", pNode->nData); //후위
+	printf("%d\n", pNode->nData); //후위
+}
+
+void Swap(int& a, int& b)
+{
+	int temp = a;
+	a = b;
+	b = temp;
+}
+
+void MinHipTreeInsert(SNode* pParent, SNode* pInsert)
+{
+	static int nCount = 0;
+	if (pParent == NULL) return;
+	printf("Level:%d\n", nCount);
+	if (pParent->nData > pInsert->nData)
+	{
+		printf("Swap Parent\n");
+		Swap(pParent->nData, pInsert->nData);
+
+		MinHipTreeInsert(pParent, pInsert);
+	}
+	else
+	{
+		if (pParent->pLeft == NULL)
+		{
+			pParent->pLeft = pInsert;
+			printf("MinHipTreeInsert_Left:%d\n", pInsert->nData);
+			nCount = 0;
+			return;
+		}
+		else if (pParent->pRight == NULL)
+		{
+			pParent->pRight = pInsert;
+			printf("MinHipTreeInsert_Right:%d\n", pInsert->nData);
+			nCount = 0;
+			return;
+		}
+		else
+		{
+			nCount++;
+			MinHipTreeInsert(pParent->pLeft, pInsert);
+		}
+	}
 }
 
 void Print(SNode* pSeed)
@@ -53,7 +96,30 @@ void Print(SNode* pSeed)
 	Traverse(pSeed);
 }
 
-void main()
+void HeapTreeMain()
+{
+	const int nSize = 5;
+	SNode* pSeed;
+	SNode* arrNodes[nSize];// = { CreateNode(10),CreateNode(50),CreateNode(30),CreateNode(20),CreateNode(40) };
+	arrNodes[0] = CreateNode(10);
+	arrNodes[1] = CreateNode(50);
+	arrNodes[2] = CreateNode(30);
+	arrNodes[3] = CreateNode(20);
+	arrNodes[4] = CreateNode(40);
+	/*for (int i = 0; i < nSize; i++)
+	{
+		arrNodes[i] = CreateNode((i + 1) * 10);
+	}*/
+	pSeed = arrNodes[0];
+	for (int i = 1; i < nSize; i++)
+	{
+		MinHipTreeInsert(pSeed, arrNodes[i]);
+	}
+
+	Print(pSeed);
+}
+
+void BinaryTreeMain()
 {
 	SNode* pSeed = NULL;
 
@@ -72,4 +138,10 @@ void main()
 	pSeed = pParent;
 
 	Print(pSeed);
+}
+
+void main()
+{
+	//BinaryTreeMain();
+	HeapTreeMain();
 }
