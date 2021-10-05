@@ -85,6 +85,12 @@ namespace CS_GameServer
             return iPAddress;
         }
 
+        public void Init(string ip)
+        {
+            m_socketServer = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
+            m_iPAddress = IPAddress.Parse(ip);
+            Console.WriteLine("Server Fixed IPAddress: {0}...", m_iPAddress);
+        }
         //소켓을 초기화하고, 내 IP를 찾아 저장하고, 포트를 설정한다.
         public void Init()
         {
@@ -204,7 +210,7 @@ namespace CS_GameServer
         public void Send(Socket socket, string msg)
         {
             NetworkStream stream = new NetworkStream(socket);
-            byte[] bytes = Encoding.ASCII.GetBytes(msg);
+            byte[] bytes = Encoding.UTF8.GetBytes(msg);
             stream.Write(bytes, 0, bytes.Length);
             stream.Close();
         }

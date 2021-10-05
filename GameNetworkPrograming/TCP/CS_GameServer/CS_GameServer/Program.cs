@@ -12,8 +12,9 @@ namespace CS_GameServer
         static void Main(string[] args)
         {
             GameServer socketServer = new GameServer();
-            //클라이언트의 소켓을 초기화하고 IP를 가져온다.
-            socketServer.Init();
+
+            socketServer.Init();//클라이언트의 소켓을 초기화하고 IP를 가져온다.
+            //socketServer.Init("220.81.32.148"); //클라이언트의 주소 입력
             //포트를 지정하고 바인딩하고 리스닝한다.
             socketServer.Bind(15000, 10);
             //완료된 서버

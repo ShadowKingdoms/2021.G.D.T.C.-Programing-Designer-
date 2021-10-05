@@ -16,6 +16,7 @@ namespace CS_ChatPureClient
                 if (addr.AddressFamily == AddressFamily.InterNetwork)
                 {
                     iPAddress = addr;
+                    Console.WriteLine(addr);
                     break;
                 }
             }

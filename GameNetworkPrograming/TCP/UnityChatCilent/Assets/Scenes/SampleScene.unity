@@ -309,6 +309,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a8b9c1ab08c02c48888c5b7d7d36a7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_strServerIP: 192.168.56.1
+  m_strServerIP: 192.168.1.130
   m_nPort: 15000
   m_strInputText: 

@@ -39,7 +39,7 @@ namespace CS_ChatPureServer
             Console.WriteLine("Server Bind...");
             socketServer.Listen(10);
             Console.WriteLine("Server Listening...");
-
+            Console.WriteLine("Client Waiting...");
             Socket socketClient = socketServer.Accept();
             Console.WriteLine("socket Client Accept!!");
 
@@ -60,10 +60,9 @@ namespace CS_ChatPureServer
             string msg = Console.ReadLine();
         }
 
-
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            PureSocketServer();
         }
     }
 }
