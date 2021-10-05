@@ -45,4 +45,9 @@ public class SoketChatClient : MonoBehaviour
             m_strInputText = "";
         }
     }
+
+    private void OnDestroy()
+    {
+        
+    }
 }
