@@ -173,6 +173,7 @@ namespace CS_GameServer
                     socketClient.Receive(bytes);
 
                     strData = System.Text.Encoding.UTF8.GetString(bytes);
+                    Console.WriteLine("Receive:" + strData);
                     Console.WriteLine(strData.Split(splitChar)[0]);
                     socketInfo.ClearBuffer();
                     BroadCastMassage(strData);

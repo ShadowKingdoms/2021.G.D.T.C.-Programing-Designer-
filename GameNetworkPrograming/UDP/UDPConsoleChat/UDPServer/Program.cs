@@ -157,6 +157,7 @@ namespace UDPServer
             //UdpSoketServerWrapperMain();
             //UDPSocketWrapperSample.ChatServerMain();
             UDPSocketWrapperSample.ChatServerMain();
+            //UDPSocketWrapperSample.ChatCilentMain();
         }
     }
 }
